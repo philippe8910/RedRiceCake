@@ -65,7 +65,15 @@ public class doughInteractionComponent : MonoBehaviour
         _scaleTween?.Kill();
     }
 
-    [ContextMenu("Execute")]
+    [ContextMenu("ExecuteTest")]
+    public void Test()
+    {
+        currentPinchCount++;
+        OnPinchRight?.Invoke();
+        ScaleAnimation();
+        Debug.Log("Pinch Dough (Right)");
+    }
+
     public void ScaleAnimation()
     {
         // 防止疊加
