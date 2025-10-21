@@ -1,0 +1,186 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RisingSmoke2_chien
+  m_Shader: {fileID: 211, guid: 0000000000000000f000000000000000, type: 0}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _ALPHABLEND_ON
+  m_InvalidKeywords:
+  - ALPHAEROSION_ON
+  - ALPHA_ERODE
+  - DISTANCE_FADE
+  - EMISSION_ON
+  - FIXED_PER_PIXEL_NORMAL
+  - FOUR_LIGHTS
+  - HEIGHT_CLIPPED
+  - LIGHT_BLEADTHROUGH
+  - LIGHT_WRAP_AROUND
+  - SIMPLE_EMMISIVE
+  - VARIABLE_SHADOWING_EFFECT
+  - VERTEX_ONLY_LIGHTS
+  - VERTEX_ONLY_SPOTLIGHTS
+  - _ALPHA_STYLE_ERODE
+  - _AMBIENT_LIGHT_FIXED
+  - _AMBIENT_LIGHT_PROBE
+  - _CAST_SHADOWS_DITHERED
+  - _DISTANCE_FADE_OFF
+  - _EMISSIVE_NONE
+  - _GLOSSYREFLECTIONS_OFF
+  - _LIGHT_COUNT_FOUR
+  - _LIGHT_QUALITY_PIXEL_ONLY
+  - _LIGHT_STYLE_WRAP_AROUND
+  - _NON_SQUARE_UV_OFF
+  - _NORMAL_STYLE_PIXEL
+  - _OVERLAY_MULTIPLY
+  - _SHADOWING_EFFECT_VARIABLE
+  - _SOFT_PARTICLE_HARD
+  - _SPECULARHIGHLIGHTS_OFF
+  - _SPOTLIGHT_QUALITY_VERTEX
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - GRABPASS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: ef6406a4596fae542bfc1e1be76026a2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: eab3a34bda5692942a9a1232530d24eb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadowDitherTex:
+        m_Texture: {fileID: 2800000, guid: 11d3a5aba3683024b81c3ae1e0c0d6ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaMode: 1
+    - _Alpha_Style: 1
+    - _Ambient_Light: 1
+    - _BackLight: 2
+    - _BlendMode: 0
+    - _BlendOp: 0
+    - _BumpScale: 1
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
+    - _Cast_Shadows: 2
+    - _ColorMode: 0
+    - _Cull: 2
+    - _Cutoff: 0.98
+    - _DetailNormalMapScale: 1
+    - _DistanceFadeEnd: 1
+    - _DistanceFadeRate: -4
+    - _DistanceFadeStart: 0.2
+    - _Distance_Fade: 0
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0
+    - _DstBlend: 1
+    - _EmissionEnabled: 0
+    - _Emissive: 0
+    - _FadeEnd: 10
+    - _FadeStart: 3.18
+    - _FlipbookMode: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.82
+    - _GlossyReflections: 0
+    - _HeightClippedFadeRate: 2.6
+    - _HeightClippedOffset: 0
+    - _InvFade: 2.22
+    - _LightBleadthrough: 0.344
+    - _LightComputationSetting: 0
+    - _LightCount: 0
+    - _LightWrapAround: 0.6
+    - _Light_Count: 2
+    - _Light_Quality: 2
+    - _Light_Style: 1
+    - _LightingEnabled: 0
+    - _LightingMode: 1
+    - _Metallic: 0.39
+    - _Mode: 4
+    - _Non_Square_Uv: 0
+    - _NormalBend: 0.56
+    - _NormalEffect: 1
+    - _NormalSharpness: 1
+    - _Normal_Style: 1
+    - _OcclusionStrength: 1
+    - _Overlay: 2
+    - _Parallax: 0.02
+    - _ShadowEffectMultiplyer: 0.6
+    - _Shadowing_Effect: 1
+    - _SmoothnessTextureChannel: 0
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
+    - _Soft_Particle: 0
+    - _SpecularHighlights: 0
+    - _Spotlight_Quality: 1
+    - _SrcBlend: 5
+    - _Thickness: 0.44
+    - _UVSec: 0
+    - _ZWrite: 0
+    - _fShadowClip: 0.4
+    - _fShadowMultiplyer: 0.13
+    m_Colors:
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _EmisColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FixedAmbientColour: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+    - _ParticleColour: {r: 1, g: 1, b: 1, a: 1}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 0.5}
+    - _UVRowsAndColumbs: {r: 1, g: 1, b: 0, a: 0}
+    - _fNonSquareUVFactor: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []

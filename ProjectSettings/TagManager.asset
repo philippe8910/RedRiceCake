@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Anchor
   - DoughObject
+  - Controller
   layers:
   - Default
   - TransparentFX
@@ -13,10 +14,10 @@ TagManager:
   - 
   - Water
   - UI
+  - Controller
   - 
-  - 
-  - 
-  - 
+  - InteractionObject
+  - Mold
   - 
   - 
   - 
