@@ -1,44 +1,9 @@
 fileFormatVersion: 2
-guid: af196dc6caa15c64c87a3a7a072f7007
+guid: 856fe3fb7d534774bad9b30332866ae1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Bowl
-    second: {fileID: 2100000, guid: 0e68e6aa605333d40a91ed9df1636c5e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: d8e2a30d61852ea4e8e9e6f63ad2aa45, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Spoons
-    second: {fileID: 2100000, guid: e9f8044738324d0478c766246f038a4c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Table_wood1
-    second: {fileID: 2100000, guid: a35ae0e5ddcebb046a6f92f3b0dbcaab, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Table_wood2
-    second: {fileID: 2100000, guid: b8c00d7499fc4ed4993eb792bdbcff21, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: steamer
-    second: {fileID: 2100000, guid: 6dab64d9fb304b74e888f5f926d39c35, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: steamer2
-    second: {fileID: 2100000, guid: 267e99b577057e447afeb1e77fce61f4, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -109,7 +74,7 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
