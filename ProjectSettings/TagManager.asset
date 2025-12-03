@@ -7,6 +7,7 @@ TagManager:
   - Anchor
   - DoughObject
   - Controller
+  - Target
   layers:
   - Default
   - TransparentFX

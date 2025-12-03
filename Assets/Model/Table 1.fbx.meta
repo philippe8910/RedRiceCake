@@ -12,6 +12,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Carbon Steel
+    second: {fileID: 2100000, guid: 184990853b1382242a883d6313f8a01e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 234c41aaea93761419e98c227019cc5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Material.002
     second: {fileID: 2100000, guid: d8e2a30d61852ea4e8e9e6f63ad2aa45, type: 2}
   - first:
@@ -22,6 +32,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Stainless Steel
+    second: {fileID: 2100000, guid: b1453e522fb024a448c6cc0fba2d5d2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Table_wood1
     second: {fileID: 2100000, guid: a35ae0e5ddcebb046a6f92f3b0dbcaab, type: 2}
   - first:
@@ -29,6 +44,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Table_wood2
     second: {fileID: 2100000, guid: b8c00d7499fc4ed4993eb792bdbcff21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pot
+    second: {fileID: 2100000, guid: 7c02cf03769d6a440850572c20724284, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
