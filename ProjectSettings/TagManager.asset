@@ -8,6 +8,10 @@ TagManager:
   - DoughObject
   - Controller
   - Target
+  - P
+  - R
+  - Target_Step_4
+  - Target_Step_5
   layers:
   - Default
   - TransparentFX
