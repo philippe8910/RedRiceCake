@@ -12,6 +12,7 @@ TagManager:
   - R
   - Target_Step_4
   - Target_Step_5
+  - Trigger_Finish
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ public class AnimatorClipEndChecker : MonoBehaviour
     [Header("完成時事件")]
     public UnityEvent onAnimationFinished;
 
-    private bool eventTriggered = false;
+    public bool eventTriggered = false;
 
     void Update()
     {
@@ -29,5 +29,10 @@ public class AnimatorClipEndChecker : MonoBehaviour
                 onAnimationFinished?.Invoke();
             }
         }
+    }
+    
+    public void SetBoolean(bool value)
+    {
+        eventTriggered = value;
     }
 }

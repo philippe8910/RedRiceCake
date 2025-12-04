@@ -11,14 +11,20 @@ public class SimpleTriggerChecker : MonoBehaviour
 
     [Header("事件：當 Tag 物件離開時")]
     public UnityEvent onExit;
+    
+    public bool isDestroyOnEnter = true;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(targetTag))
+        if (other.tag == targetTag)
         {
-            Destroy(other.gameObject);
+            if(isDestroyOnEnter)
+                Destroy(other.gameObject);
+            
             onEnter?.Invoke();
         }
+
+        Debug.Log("Trigger Enter: " + other.name);
     }
 
     private void OnTriggerExit(Collider other)
@@ -27,5 +33,7 @@ public class SimpleTriggerChecker : MonoBehaviour
         {
             onExit?.Invoke();
         }
+        
+        Debug.Log("Trigger Exit: " + other.name);
     }
 }
