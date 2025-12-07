@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9018129793148692594, guid: 7a609c0d841f56e4a8380a0f34aeb871, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3390580969912328206, guid: 7a609c0d841f56e4a8380a0f34aeb871, type: 3}
     - {fileID: 3296411272366601361, guid: 7a609c0d841f56e4a8380a0f34aeb871, type: 3}
@@ -89,6 +93,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 977862354352289290}
     m_Modifications:
+    - target: {fileID: -611970250321497270, guid: cae8d0c2ccb422244a6b8dc99c69e96f, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8546117209499290850, guid: cae8d0c2ccb422244a6b8dc99c69e96f, type: 3}
       propertyPath: m_Name
       value: P
@@ -206,6 +214,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6492412928409172374, guid: 7996f515ad717bb429d9db59d85beb2c, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8626161600805852239, guid: 7996f515ad717bb429d9db59d85beb2c, type: 3}
       propertyPath: m_Name
       value: WhiteCake_Step_4 Variant
@@ -292,6 +304,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8626161600805852239, guid: 7996f515ad717bb429d9db59d85beb2c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7652825032680172130}
+    - targetCorrespondingSourceObject: {fileID: 8626161600805852239, guid: 7996f515ad717bb429d9db59d85beb2c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3127727633871355527}
   m_SourcePrefab: {fileID: 100100000, guid: 7996f515ad717bb429d9db59d85beb2c, type: 3}
 --- !u!1 &493636799543209136 stripped
 GameObject:
@@ -480,6 +495,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.004
   m_Center: {x: -0.0003004833, y: 0.00030447403, z: 0.00020890986}
+--- !u!114 &-3127727633871355527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493636799543209136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5547a0801c1b440a04ba772756a80f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4747782443234006459}
+  movementThreshold: 0.01
+  useGravityWhenTriggered: 1
 --- !u!4 &977862354352289290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9006522957875744501, guid: 7996f515ad717bb429d9db59d85beb2c, type: 3}
