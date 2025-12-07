@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6492412928409172374, guid: 7996f515ad717bb429d9db59d85beb2c, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8626161600805852239, guid: 7996f515ad717bb429d9db59d85beb2c, type: 3}
       propertyPath: m_Name
       value: cake_Finish Variant

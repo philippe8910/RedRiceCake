@@ -298,5 +298,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5668057281037504375}
-  movementThreshold: 0.01
+  movementThreshold: 0.001
   useGravityWhenTriggered: 1
