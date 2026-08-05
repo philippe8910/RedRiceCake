@@ -33,6 +33,10 @@
 
 # Visual Studio cache directory
 .vs/
+.vscode/
+
+# JetBrains Rider / IntelliJ project settings
+.idea/
 
 # Gradle cache directory
 .gradle/
