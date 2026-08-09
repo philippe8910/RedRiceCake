@@ -23,6 +23,16 @@ public class MooncakeTraySlot : MonoBehaviour
     [Tooltip("模具身上必須真的有月餅才算數")]
     public bool requireMooncakeOnMold = true;
 
+    [Header("放上去的煙霧")]
+    [Tooltip("模具把月餅放到這一格時要放的煙霧特效")]
+    public GameObject smokePrefab;
+    [Tooltip("煙霧生成點；留空則用這一格自己的位置")]
+    public Transform smokePoint;
+    [Tooltip("相對生成點的位移")]
+    public Vector3 smokeOffset = Vector3.zero;
+    [Tooltip("播完之後自動刪掉（Smoke.prefab 的 Stop Action 是 None，不刪會一直留著）")]
+    public bool destroySmokeWhenFinished = true;
+
     [Header("刷蛋液")]
     [Tooltip("掛在「月餅-放置」上的接收器，等蛋液刷碰進來")]
     public MooncakeDropSocket eggWashSocket;
@@ -105,6 +115,8 @@ public class MooncakeTraySlot : MonoBehaviour
         if (mold != null) mold.ReleaseMooncake();
         if (placedObject != null) placedObject.SetActive(true);
 
+        PlaySmoke();
+
         onPlaced?.Invoke(gameObject);
         Placed?.Invoke(this);
 
@@ -116,6 +128,36 @@ public class MooncakeTraySlot : MonoBehaviour
     public void DebugPlace()
     {
         Place(FindObjectOfType<MooncakeMoldStation>());
+    }
+
+    // ---------------- 煙霧 ----------------
+
+    /// <summary>放上去的瞬間冒一下煙。</summary>
+    [Button("Debug：放一次煙霧", ButtonSizes.Medium), GUIColor(0.6f, 0.9f, 0.6f)]
+    public GameObject PlaySmoke()
+    {
+        if (smokePrefab == null) return null;
+
+        Transform origin = smokePoint != null ? smokePoint : transform;
+
+        // 生在場景最外層、不掛任何父物件：烤盤與這一格都有自己的縮放
+        // （提示欄位是 0.0101），掛上去粒子大小會被父物件的 lossyScale 拉走
+        var go = Instantiate(smokePrefab, origin.position + smokeOffset, origin.rotation);
+
+        // 保險：尺寸一律跟 Prefab 一致
+        go.transform.localScale = smokePrefab.transform.localScale;
+
+        if (destroySmokeWhenFinished) Destroy(go, SmokeLifetime(go));
+        return go;
+    }
+
+    private static float SmokeLifetime(GameObject go)
+    {
+        var ps = go.GetComponentInChildren<ParticleSystem>(true);
+        if (ps == null) return 3f;
+
+        var main = ps.main;
+        return main.duration + main.startLifetime.constantMax + 0.5f;
     }
 
     // ---------------- 刷蛋液 ----------------

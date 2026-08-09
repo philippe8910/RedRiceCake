@@ -40,6 +40,16 @@ public class MooncakeBakeOven : MonoBehaviour
     public float panSlideLocalX = 0.6f;
     public float panSlideDuration = 1f;
 
+    [Header("開門煙霧")]
+    [Tooltip("煙霧範本；留空會依下面的名稱在場景裡找（含未啟用的物件）。每次開門都會複製一份出來")]
+    public ParticleSystem ovenSmoke;
+    [Tooltip("場景裡那顆煙霧物件的名稱")]
+    public string ovenSmokeName = "烤箱粒子位置";
+    [Tooltip("開場把範本關掉，它只當位置用，不自己播")]
+    public bool silenceSmokeOnAwake = true;
+    [Tooltip("播完之後自動刪掉複製出來的那份")]
+    public bool destroySmokeWhenFinished = true;
+
     [Header("倒數")]
     [Tooltip("圓餅倒數（Image 用 Filled / Radial360）")]
     public SimpleCountdownTimer countdown;
@@ -90,6 +100,67 @@ public class MooncakeBakeOven : MonoBehaviour
 
         if (countdown != null) countdown.onCountdownComplete.AddListener(HandleBakeFinished);
         if (countdownVisual != null) countdownVisual.SetActive(false);
+
+        ResolveSmoke();
+    }
+
+    private void ResolveSmoke()
+    {
+        if (ovenSmoke == null && !string.IsNullOrEmpty(ovenSmokeName))
+        {
+            // 含未啟用的物件一起找，這樣那顆煙霧可以在場景裡先關著當定位用
+            foreach (var ps in Resources.FindObjectsOfTypeAll<ParticleSystem>())
+            {
+                if (ps.gameObject.scene.IsValid() && ps.name == ovenSmokeName)
+                {
+                    ovenSmoke = ps;
+                    break;
+                }
+            }
+        }
+
+        if (ovenSmoke == null)
+        {
+            Debug.LogWarning($"[月餅烤箱] 場景裡找不到煙霧物件「{ovenSmokeName}」", this);
+            return;
+        }
+
+        // 範本只當位置用：關掉它，Play On Awake 就不會在進場時噴一次
+        if (silenceSmokeOnAwake && ovenSmoke.gameObject.activeSelf)
+            ovenSmoke.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// 開門時噴一次煙。這顆粒子的 rateOverTime 是 0、只靠 time=0 的一次性 burst，
+    /// 同一幀 Stop→Play 重啟 burst 並不可靠，所以每次都複製一份新的出來播。
+    /// </summary>
+    [Button("Debug：噴一次烤箱煙霧", ButtonSizes.Medium), GUIColor(0.6f, 0.9f, 0.6f)]
+    public GameObject PlayOvenSmoke()
+    {
+        if (ovenSmoke == null) ResolveSmoke();
+        if (ovenSmoke == null) return null;
+
+        var src = ovenSmoke.transform;
+
+        // 不掛父物件，尺寸才會跟範本一致
+        var go = Instantiate(ovenSmoke.gameObject, src.position, src.rotation);
+        go.transform.localScale = src.localScale;
+        go.name = ovenSmoke.name + " (Playing)";
+        go.SetActive(true);
+
+        var ps = go.GetComponent<ParticleSystem>();
+        if (ps != null) ps.Play(true);
+
+        if (destroySmokeWhenFinished) Destroy(go, SmokeLifetime(ps));
+        return go;
+    }
+
+    private static float SmokeLifetime(ParticleSystem ps)
+    {
+        if (ps == null) return 3f;
+
+        var main = ps.main;
+        return main.duration + main.startLifetime.constantMax + 0.5f;
     }
 
     private void OnDestroy()
@@ -197,6 +268,8 @@ public class MooncakeBakeOven : MonoBehaviour
 
     private void OpenDoor(TweenCallback onDone = null)
     {
+        // 只要門一開就噴煙，實機與 Debug 開門走同一條路徑
+        PlayOvenSmoke();
         RotateDoor(openEuler, onDone);
     }
 
