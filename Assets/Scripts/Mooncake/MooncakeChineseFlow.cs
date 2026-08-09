@@ -44,10 +44,20 @@ public class MooncakeChineseFlow : MonoBehaviour
     [Tooltip("下一輪從「月餅-麵團-提示」重新開始（要再抓一次麵團球）。關掉則直接打開壓扁站")]
     public bool restartFromDoughHint = true;
 
+    [Header("烘烤")]
+    [Tooltip("要烤幾輪才算完成：第 1 輪出爐後刷蛋液，第 2 輪出爐才變成完成體")]
+    public int bakesBeforeDone = 2;
+
     [Header("事件")]
     public UnityEvent onCycleStart;
     public MooncakeGameObjectEvent onDoughPieceSpawned;
     public UnityEvent onAllPlaced;
+    [Tooltip("第一輪出爐，可以開始刷蛋液了")]
+    public UnityEvent onEggWashStart;
+    [Tooltip("三個都刷到蛋液，可以再放回烤箱了")]
+    public UnityEvent onEggWashComplete;
+    [Tooltip("最後一輪烤完，月餅換成完成體")]
+    public UnityEvent onAllBaked;
 
     /// <summary>已經放到烤盤上的月餅數量。</summary>
     public int PlacedCount { get; private set; }
@@ -66,7 +76,9 @@ public class MooncakeChineseFlow : MonoBehaviour
         {
             foreach (var slot in traySlots)
             {
-                if (slot != null) slot.Placed += HandleSlotPlaced;
+                if (slot == null) continue;
+                slot.Placed += HandleSlotPlaced;
+                slot.EggWashed += HandleSlotEggWashed;
             }
         }
     }
@@ -83,22 +95,71 @@ public class MooncakeChineseFlow : MonoBehaviour
         {
             foreach (var slot in traySlots)
             {
-                if (slot != null) slot.Placed -= HandleSlotPlaced;
+                if (slot == null) continue;
+                slot.Placed -= HandleSlotPlaced;
+                slot.EggWashed -= HandleSlotEggWashed;
             }
         }
     }
 
-    // ---------------- 烤好了 ----------------
+    // ---------------- 烘烤 / 刷蛋液 ----------------
 
-    /// <summary>倒數結束：烤盤上的月餅全部換成烤過的完成體。</summary>
+    /// <summary>已經烤完幾輪。</summary>
+    public int BakeRound { get; private set; }
+
     private void HandleBakeComplete()
     {
-        if (traySlots == null) return;
+        BakeRound++;
+
+        if (BakeRound < Mathf.Max(1, bakesBeforeDone))
+        {
+            // 第一輪出爐：先不變完成體，開放刷蛋液
+            if (traySlots != null)
+            {
+                foreach (var slot in traySlots)
+                {
+                    if (slot != null) slot.EnableEggWash(true);
+                }
+            }
+
+            // 三個都刷到之前，烤箱不收烤盤
+            if (ovenStation != null) ovenStation.SetAcceptPan(false);
+
+            onEggWashStart?.Invoke();
+            return;
+        }
+
+        // 最後一輪：換成烤過的完成體
+        if (traySlots != null)
+        {
+            foreach (var slot in traySlots)
+            {
+                if (slot != null) slot.SetBaked(true);
+            }
+        }
+
+        onAllBaked?.Invoke();
+    }
+
+    private void HandleSlotEggWashed(MooncakeTraySlot slot)
+    {
+        if (!AllEggWashed()) return;
+
+        // 三個都沾到蛋液了 → 放行，可以再送進烤箱
+        if (ovenStation != null) ovenStation.SetAcceptPan(true);
+        onEggWashComplete?.Invoke();
+    }
+
+    private bool AllEggWashed()
+    {
+        if (traySlots == null || traySlots.Length == 0) return false;
 
         foreach (var slot in traySlots)
         {
-            if (slot != null) slot.SetBaked(true);
+            if (slot == null) continue;
+            if (slot.IsFilled && !slot.IsEggWashed) return false;
         }
+        return true;
     }
 
     // ---------------- 麵團做好 ----------------
@@ -232,6 +293,31 @@ public class MooncakeChineseFlow : MonoBehaviour
         else Debug.LogWarning("[月餅流程] 沒有指定 Oven Station", this);
     }
 
+    [FoldoutGroup("Debug"), Button("⑧ 三顆都刷上蛋液", ButtonSizes.Medium), GUIColor(0.6f, 0.9f, 0.6f)]
+    public void DebugStep8_EggWash()
+    {
+        if (traySlots == null) return;
+        foreach (var slot in traySlots)
+        {
+            if (slot != null && slot.IsFilled) slot.DebugEggWash();
+        }
+    }
+
+    [FoldoutGroup("Debug"), Button("⑨ 再送進烤箱（第二輪）", ButtonSizes.Medium), GUIColor(0.6f, 0.9f, 0.6f)]
+    public void DebugStep9_BakeAgain()
+    {
+        if (!AllEggWashed())
+        {
+            Debug.LogWarning("[月餅流程] 還沒三個都刷到蛋液", this);
+            return;
+        }
+        if (ovenStation != null)
+        {
+            ovenStation.SetAcceptPan(true);
+            ovenStation.DebugInsertPan();
+        }
+    }
+
     [FoldoutGroup("Debug"), Button("一鍵跑完一顆", ButtonSizes.Large), GUIColor(0.4f, 0.8f, 1f)]
     public void DebugRunOneCake()
     {
@@ -290,8 +376,18 @@ public class MooncakeChineseFlow : MonoBehaviour
             yield return new WaitForSeconds(Mathf.Max(0.1f, debugStepDelay));
         }
 
-        // 三顆都好了就直接送進烤箱
+        // 三顆都好了 → 第一輪烘烤 → 刷蛋液 → 第二輪烘烤
+        float d = Mathf.Max(0.1f, debugStepDelay);
+
         DebugStep7_Bake();
+        yield return new WaitForSeconds(d);
+        yield return new WaitUntil(() => ovenStation == null || ovenStation.BakeCount >= 1);
+        yield return new WaitForSeconds(d);
+
+        DebugStep8_EggWash();
+        yield return new WaitForSeconds(d);
+
+        DebugStep9_BakeAgain();
     }
 
     private MooncakeTraySlot NextEmptySlot()
@@ -311,6 +407,9 @@ public class MooncakeChineseFlow : MonoBehaviour
         PlacedCount = 0;
 
         if (_currentPiece != null) Destroy(_currentPiece);
+
+        BakeRound = 0;
+        if (ovenStation != null) ovenStation.ResetStation();
 
         if (traySlots != null)
         {

@@ -55,14 +55,29 @@ public class MooncakeBakeOven : MonoBehaviour
     public UnityEvent onPanSlidOut;
 
     [ShowInInspector, ReadOnly] private bool _baking;
-    [ShowInInspector, ReadOnly] private bool _baked;
+    [ShowInInspector, ReadOnly] private int _bakeCount;
+    [ShowInInspector, ReadOnly] private bool _acceptPan = true;
 
     private MooncakeBakingPan _pan;
     private Tween _doorTween;
     private Tween _panTween;
 
     public bool IsBaking => _baking;
-    public bool HasBaked => _baked;
+    /// <summary>已經烤完幾輪（刷蛋液前 1 輪、刷完再 1 輪）。</summary>
+    public int BakeCount => _bakeCount;
+    public bool AcceptingPan => _acceptPan;
+
+    /// <summary>由流程控制：還沒刷完蛋液就不收烤盤。</summary>
+    public void SetAcceptPan(bool value)
+    {
+        _acceptPan = value;
+
+        if (value)
+        {
+            _baking = false;
+            if (ovenZone != null) ovenZone.ResetSocket();   // socket 是 oneShot，要放行才收得到
+        }
+    }
 
     private void Awake()
     {
@@ -104,7 +119,7 @@ public class MooncakeBakeOven : MonoBehaviour
 
     private void HandlePanInserted(GameObject pan)
     {
-        if (_baking || _baked) return;
+        if (_baking || !_acceptPan) return;
 
         _pan = pan != null ? pan.GetComponentInParent<MooncakeBakingPan>() : null;
         if (_pan == null) _pan = FindObjectOfType<MooncakeBakingPan>();
@@ -136,7 +151,8 @@ public class MooncakeBakeOven : MonoBehaviour
         if (!_baking) return;
 
         _baking = false;
-        _baked = true;
+        _bakeCount++;
+        _acceptPan = false;   // 下一輪要由流程放行
 
         if (countdownVisual != null) countdownVisual.SetActive(false);
 
@@ -249,7 +265,8 @@ public class MooncakeBakeOven : MonoBehaviour
         }
 
         _baking = false;
-        _baked = false;
+        _bakeCount = 0;
+        _acceptPan = true;
         _pan = null;
 
         if (ovenZone != null) ovenZone.ResetSocket();
