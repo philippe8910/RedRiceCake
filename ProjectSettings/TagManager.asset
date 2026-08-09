@@ -14,6 +14,10 @@ TagManager:
   - Target_Step_5
   - Trigger_Finish
   - dumpling
+  - Filling
+  - MooncakePiece
+  - Mold
+  - BakingPan
   layers:
   - Default
   - TransparentFX
@@ -25,6 +29,7 @@ TagManager:
   - 
   - InteractionObject
   - Mold
+  - BakingPan
   - 
   - 
   - 
