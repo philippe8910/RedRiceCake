@@ -34,13 +34,15 @@ public static class MooncakeLoc
         _currentLanguage = t.GetProperty("CurrentLanguage", BindingFlags.Public | BindingFlags.Static);
     }
 
-    /// <summary>取翻譯；查不到就回傳 fallback（通常是英文原字）。</summary>
-    public static string T(string term, string fallback = null)
+    /// <summary>查一個 term；查不到（或翻譯是空的、或原封不動回傳 term）回 false。</summary>
+    public static bool TryGet(string term, out string text)
     {
-        if (string.IsNullOrEmpty(term)) return fallback ?? string.Empty;
+        text = null;
+
+        if (string.IsNullOrEmpty(term)) return false;
 
         Resolve();
-        if (_getTranslation == null) return fallback ?? term;
+        if (_getTranslation == null) return false;
 
         try
         {
@@ -50,14 +52,31 @@ public static class MooncakeLoc
             for (int i = 1; i < ps.Length; i++)
                 args[i] = ps[i].HasDefaultValue ? ps[i].DefaultValue : null;
 
-            var r = _getTranslation.Invoke(null, args) as string;
-            return string.IsNullOrEmpty(r) ? (fallback ?? term) : r;
+            text = _getTranslation.Invoke(null, args) as string;
         }
-        catch
+        catch (Exception e)
         {
-            return fallback ?? term;
+            Debug.LogWarning($"[在地化] 取「{term}」失敗：{e.Message}");
+            return false;
         }
+
+        // 查不到時 I2 可能回 null、空字串，或原封不動把 term 丟回來
+        if (string.IsNullOrEmpty(text) || text == term)
+        {
+            text = null;
+            return false;
+        }
+        return true;
     }
+
+    /// <summary>取翻譯；查不到就回傳 fallback（通常是原文）。</summary>
+    public static string T(string term, string fallback = null)
+    {
+        return TryGet(term, out var text) ? text : (fallback ?? term ?? string.Empty);
+    }
+
+    /// <summary>同 <see cref="T"/>，給既有呼叫端沿用的別名。</summary>
+    public static string Get(string term, string fallback) => T(term, fallback);
 
     public static string CurrentLanguage
     {

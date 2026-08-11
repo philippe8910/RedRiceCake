@@ -148,6 +148,25 @@ public class MooncakeSettings : MonoBehaviour
         };
     }
 
+    /// <summary>直接切到指定語言索引（給 debug 快捷鍵或外部呼叫用）。</summary>
+    public void SetLanguage(int index)
+    {
+        if (languages == null || languages.Length == 0) return;
+
+        language = Wrap(index, languages.Length);
+        ApplyLanguage();
+        Save();
+        onChanged?.Invoke();
+    }
+
+    /// <summary>依語言名稱切換；名稱不在清單裡就忽略並發警告。</summary>
+    public void SetLanguage(string languageName)
+    {
+        int i = Array.IndexOf(languages ?? Array.Empty<string>(), languageName);
+        if (i >= 0) SetLanguage(i);
+        else Debug.LogWarning($"[設定] 語言清單裡沒有「{languageName}」", this);
+    }
+
     public bool IsSlider(Id id) => _options.TryGetValue(id, out var o) && o.isSlider;
 
     public float GetNormalized(Id id)
@@ -252,10 +271,8 @@ public class MooncakeSettings : MonoBehaviour
     {
         string lang = Lang;
 
-        var t = Type.GetType("I2.Loc.LocalizationManager, Assembly-CSharp");
-        var prop = t?.GetProperty("CurrentLanguage",
-            System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
-        if (prop != null && prop.CanWrite) prop.SetValue(null, lang);
+        // 統一走 MooncakeLoc，執行期只有這一個 I2 入口
+        MooncakeLoc.CurrentLanguage = lang;
 
         onLanguageChanged?.Invoke(lang);
     }

@@ -344,7 +344,7 @@ public class MooncakeTutorial : MonoBehaviour
 
         _nextLanguageCheck = Time.unscaledTime + 0.5f;
 
-        string lang = MooncakeLocalization.CurrentLanguage;
+        string lang = MooncakeLoc.CurrentLanguage;
         if (lang == _lastLanguage) return;
 
         bool first = _lastLanguage == null;
@@ -550,7 +550,7 @@ public class MooncakeTutorial : MonoBehaviour
 
     private string Localized(string term, string fallback)
     {
-        return useLocalization ? MooncakeLocalization.Get(term, fallback) : fallback;
+        return useLocalization ? MooncakeLoc.Get(term, fallback) : fallback;
     }
 
     /// <summary>步驟對應的 I2 term 英文代號（term 用 ASCII，翻譯人員比較好認）。</summary>

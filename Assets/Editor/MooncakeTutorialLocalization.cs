@@ -14,7 +14,7 @@ public static class MooncakeTutorialLocalization
 {
     const string k_SourcePath = "Assets/Resources/I2Languages.asset";
 
-    // 順序要跟 MooncakeSettingsPanel.languages 一致，之後用索引切語言才對得上
+    // 順序要跟 MooncakeSettings.languages 一致，之後用索引切語言才對得上
     static readonly string[] k_Languages = { "English", "Chinese", "Japanese", "Korean", "Indonesian" };
     static readonly string[] k_Codes = { "en", "zh-TW", "ja", "ko", "id" };
 

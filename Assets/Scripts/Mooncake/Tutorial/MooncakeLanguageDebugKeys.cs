@@ -9,11 +9,11 @@ using Sirenix.OdinInspector;
 [DisallowMultipleComponent]
 public class MooncakeLanguageDebugKeys : MonoBehaviour
 {
-    [Tooltip("依序對應數字鍵 1、2、3、4、5；名稱要跟 I2 裡的語言一致")]
-    public string[] languages = { "Chinese", "English", "Japanese", "Korean", "Indonesian" };
+    [Tooltip("留空則沿用 MooncakeSettings 的語言清單；填了才覆寫")]
+    public string[] languages;
 
-    [Tooltip("同時也叫設定面板的 SetLanguage，讓設定狀態跟著一起走")]
-    public bool syncWithSettingsPanel = true;
+    [Tooltip("同時也叫 MooncakeSettings 切語言，PlayerPrefs 與事件才會一起更新")]
+    public bool syncWithSettings = true;
 
     [Tooltip("切換時在 Console 印一行")]
     public bool logOnSwitch = true;
@@ -23,15 +23,20 @@ public class MooncakeLanguageDebugKeys : MonoBehaviour
 
     [ShowInInspector, ReadOnly] private string _current;
 
-    private MooncakeSettingsPanel _settings;
+    private MooncakeSettings _settings;
+
+    /// <summary>實際使用的語言清單：優先用自己的，否則跟著設定走。</summary>
+    private string[] Languages =>
+        (languages != null && languages.Length > 0) ? languages
+        : (_settings != null ? _settings.languages : null);
 
     private void Start()
     {
-        if (syncWithSettingsPanel) _settings = FindObjectOfType<MooncakeSettingsPanel>(true);
+        _settings = MooncakeSettings.Instance ?? FindObjectOfType<MooncakeSettings>(true);
 
-        _current = MooncakeLocalization.CurrentLanguage;
+        _current = MooncakeLoc.CurrentLanguage;
 
-        if (!MooncakeLocalization.Available)
+        if (!MooncakeLoc.IsAvailable)
             Debug.LogWarning("[月餅語言] 場上沒有可用的 I2，數字鍵切語言不會有作用", this);
     }
 
@@ -52,16 +57,18 @@ public class MooncakeLanguageDebugKeys : MonoBehaviour
     /// <summary>切到清單裡第 index 個語言。</summary>
     public void Switch(int index)
     {
-        if (languages == null || index < 0 || index >= languages.Length) return;
+        var list = Languages;
+        if (list == null || index < 0 || index >= list.Length) return;
 
-        string lang = languages[index];
+        string lang = list[index];
         if (string.IsNullOrEmpty(lang)) return;
 
-        // 設定面板存在就走它，PlayerPrefs 與 onLanguageChanged 才會一起更新
-        if (_settings != null) _settings.SetLanguage(lang);
-        else MooncakeLocalization.CurrentLanguage = lang;
+        // 走設定元件，PlayerPrefs 與 onLanguageChanged 才會一起更新
+        int i = System.Array.IndexOf(_settings != null ? _settings.languages : list, lang);
+        if (syncWithSettings && _settings != null && i >= 0) _settings.SetLanguage(i);
+        else MooncakeLoc.CurrentLanguage = lang;
 
-        _current = MooncakeLocalization.CurrentLanguage;
+        _current = MooncakeLoc.CurrentLanguage;
 
         if (logOnSwitch)
             Debug.Log($"[月餅語言] 數字鍵 {index + 1} → {lang}（目前：{_current}）", this);
@@ -70,9 +77,10 @@ public class MooncakeLanguageDebugKeys : MonoBehaviour
     [Button("Debug：下一個語言", ButtonSizes.Medium), GUIColor(0.6f, 0.8f, 1f)]
     public void NextLanguage()
     {
-        if (languages == null || languages.Length == 0) return;
+        var list = Languages;
+        if (list == null || list.Length == 0) return;
 
-        int i = System.Array.IndexOf(languages, MooncakeLocalization.CurrentLanguage);
-        Switch((i + 1) % languages.Length);
+        int i = System.Array.IndexOf(list, MooncakeLoc.CurrentLanguage);
+        Switch((i + 1) % list.Length);
     }
 }
