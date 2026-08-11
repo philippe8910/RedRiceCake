@@ -1,0 +1,388 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0b0c553be8edd4682e9180fdd13e37, type: 3}
+  m_Name: I2Languages
+  m_EditorClassIdentifier:
+  mSource:
+    mTerms:
+    - Term: Menu/Chinese
+      TermType: 0
+      Description:
+      Languages:
+      - Chinese
+      - "\u4E2D\u5F0F\u6708\u9905"
+      - "\u4E2D\u83EF\u98A8\u6708\u9905"
+      - "\uC911\uD654\uD48D \uC6D4\uBCD1"
+      - "Kue Bulan Tionghoa"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Menu/Indonesian
+      TermType: 0
+      Description:
+      Languages:
+      - Indonesian
+      - "\u5370\u5C3C\u6708\u9905"
+      - "\u30A4\u30F3\u30C9\u30CD\u30B7\u30A2\u6708\u9905"
+      - "\uC778\uB3C4\uB124\uC2DC\uC544 \uC6D4\uBCD1"
+      - "Kue Bulan Indonesia"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Menu/Settings
+      TermType: 0
+      Description:
+      Languages:
+      - Settings
+      - "\u8A2D\u5B9A"
+      - "\u8A2D\u5B9A"
+      - "\uC124\uC815"
+      - Pengaturan
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Menu/Title
+      TermType: 0
+      Description:
+      Languages:
+      - "MOONCAKE VR"
+      - "\u6708\u9905 VR"
+      - "\u30E0\u30FC\u30F3\u30B1\u30FC\u30AD VR"
+      - "\uC6D4\uBCD1 VR"
+      - "MOONCAKE VR"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/Back
+      TermType: 0
+      Description:
+      Languages:
+      - Back
+      - "\u8FD4\u56DE"
+      - "\u623B\u308B"
+      - "\uB4A4\uB85C"
+      - Kembali
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/Language
+      TermType: 0
+      Description:
+      Languages:
+      - Language
+      - "\u8A9E\u8A00"
+      - "\u8A00\u8A9E"
+      - "\uC5B8\uC5B4"
+      - Bahasa
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/MasterVolume
+      TermType: 0
+      Description:
+      Languages:
+      - "Master Volume"
+      - "\u4E3B\u97F3\u91CF"
+      - "\u30DE\u30B9\u30BF\u30FC\u97F3\u91CF"
+      - "\uC804\uCCB4 \uC74C\uB7C9"
+      - "Volume Utama"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/MoveSpeed
+      TermType: 0
+      Description:
+      Languages:
+      - "Movement Speed"
+      - "\u79FB\u52D5\u901F\u5EA6"
+      - "\u79FB\u52D5\u901F\u5EA6"
+      - "\uC774\uB3D9 \uC18D\uB3C4"
+      - "Kecepatan Gerak"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/MusicVolume
+      TermType: 0
+      Description:
+      Languages:
+      - "Music Volume"
+      - "\u97F3\u6A02\u97F3\u91CF"
+      - "\u97F3\u697D\u97F3\u91CF"
+      - "\uC74C\uC545 \uC74C\uB7C9"
+      - "Volume Musik"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/QualityLevel
+      TermType: 0
+      Description:
+      Languages:
+      - Quality
+      - "\u756B\u8CEA"
+      - "\u753B\u8CEA"
+      - "\uD654\uC9C8"
+      - Kualitas
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/RenderScale
+      TermType: 0
+      Description:
+      Languages:
+      - "Render Scale"
+      - "\u89E3\u6790\u5EA6\u6BD4\u4F8B"
+      - "\u89E3\u50CF\u5EA6\u30B9\u30B1\u30FC\u30EB"
+      - "\uB80C\uB354 \uBC30\uC728"
+      - "Skala Render"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/ResetDefaults
+      TermType: 0
+      Description:
+      Languages:
+      - "Reset Defaults"
+      - "\u56DE\u5FA9\u9810\u8A2D"
+      - "\u521D\u671F\u8A2D\u5B9A\u306B\u623B\u3059"
+      - "\uAE30\uBCF8\uAC12\uC73C\uB85C"
+      - "Reset Bawaan"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/SfxVolume
+      TermType: 0
+      Description:
+      Languages:
+      - "Sound Effects"
+      - "\u97F3\u6548\u97F3\u91CF"
+      - "\u52B9\u679C\u97F3"
+      - "\uD6A8\uACFC\uC74C"
+      - "Efek Suara"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/Shadows
+      TermType: 0
+      Description:
+      Languages:
+      - Shadows
+      - "\u9670\u5F71"
+      - "\u5F71"
+      - "\uADF8\uB9BC\uC790"
+      - Bayangan
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/SnapAngle
+      TermType: 0
+      Description:
+      Languages:
+      - "Snap Angle"
+      - "\u8F49\u5411\u89D2\u5EA6"
+      - "\u56DE\u8EE2\u89D2\u5EA6"
+      - "\uD68C\uC804 \uAC01\uB3C4"
+      - "Sudut Putar"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/Tab/Comfort
+      TermType: 0
+      Description:
+      Languages:
+      - Comfort
+      - "\u8212\u9069\u5EA6"
+      - "\u5FEB\u9069\u6027"
+      - "\uD3B8\uC758\uC131"
+      - Kenyamanan
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/Tab/General
+      TermType: 0
+      Description:
+      Languages:
+      - General
+      - "\u4E00\u822C"
+      - "\u4E00\u822C"
+      - "\uC77C\uBC18"
+      - Umum
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/Tab/Graphics
+      TermType: 0
+      Description:
+      Languages:
+      - Graphics
+      - "\u756B\u9762"
+      - "\u30B0\u30E9\u30D5\u30A3\u30C3\u30AF"
+      - "\uADF8\uB798\uD53D"
+      - Grafik
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/Title
+      TermType: 0
+      Description:
+      Languages:
+      - SETTINGS
+      - "\u8A2D\u5B9A"
+      - "\u8A2D\u5B9A"
+      - "\uC124\uC815"
+      - PENGATURAN
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/TurnMode
+      TermType: 0
+      Description:
+      Languages:
+      - "Turn Mode"
+      - "\u8F49\u5411\u65B9\u5F0F"
+      - "\u65CB\u56DE\u65B9\u5F0F"
+      - "\uD68C\uC804 \uBC29\uC2DD"
+      - "Mode Putar"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Settings/Vignette
+      TermType: 0
+      Description:
+      Languages:
+      - "Comfort Vignette"
+      - "\u6688\u5F71\u6E1B\u6688"
+      - "\u30D3\u30CD\u30C3\u30C8"
+      - "\uBE44\uB124\uD2B8"
+      - Vignette
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Value/Fast
+      TermType: 0
+      Description:
+      Languages:
+      - Fast
+      - "\u5FEB"
+      - "\u901F\u3044"
+      - "\uBE60\uB984"
+      - Cepat
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Value/High
+      TermType: 0
+      Description:
+      Languages:
+      - High
+      - "\u5F37"
+      - "\u5F37"
+      - "\uAC15"
+      - Tinggi
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Value/Low
+      TermType: 0
+      Description:
+      Languages:
+      - Low
+      - "\u5F31"
+      - "\u5F31"
+      - "\uC57D"
+      - Rendah
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Value/Medium
+      TermType: 0
+      Description:
+      Languages:
+      - Medium
+      - "\u4E2D"
+      - "\u4E2D"
+      - "\uC911"
+      - Sedang
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Value/Normal
+      TermType: 0
+      Description:
+      Languages:
+      - Normal
+      - "\u666E\u901A"
+      - "\u666E\u901A"
+      - "\uBCF4\uD1B5"
+      - Normal
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Value/Off
+      TermType: 0
+      Description:
+      Languages:
+      - Off
+      - "\u95DC"
+      - "\u30AA\u30D5"
+      - "\uB044\uAE30"
+      - Nonaktif
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Value/On
+      TermType: 0
+      Description:
+      Languages:
+      - On
+      - "\u958B"
+      - "\u30AA\u30F3"
+      - "\uCF1C\uAE30"
+      - Aktif
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Value/Slow
+      TermType: 0
+      Description:
+      Languages:
+      - Slow
+      - "\u6162"
+      - "\u9045\u3044"
+      - "\uB290\uB9BC"
+      - Lambat
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Value/Smooth
+      TermType: 0
+      Description:
+      Languages:
+      - Smooth
+      - "\u5E73\u6ED1"
+      - "\u30B9\u30E0\u30FC\u30BA"
+      - "\uBD80\uB4DC\uB7FD\uAC8C"
+      - Halus
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Value/Snap
+      TermType: 0
+      Description:
+      Languages:
+      - Snap
+      - "\u5206\u6BB5"
+      - "\u30B9\u30CA\u30C3\u30D7"
+      - "\uC2A4\uB0C5"
+      - Snap
+      Flags: 0101010101
+      Languages_Touch: []
+    CaseInsensitiveTerms: 0
+    OnMissingTranslation: 1
+    mTerm_AppName:
+    mLanguages:
+    - Name: English
+      Code: en
+      Flags: 0
+    - Name: Chinese
+      Code: zh-TW
+      Flags: 0
+    - Name: Japanese
+      Code: ja
+      Flags: 0
+    - Name: Korean
+      Code: ko
+      Flags: 0
+    - Name: Indonesian
+      Code: id
+      Flags: 0
+    IgnoreDeviceLanguage: 0
+    _AllowUnloadingLanguages: 0
+    Google_WebServiceURL:
+    Google_SpreadsheetKey:
+    Google_SpreadsheetName:
+    Google_LastUpdatedVersion:
+    GoogleUpdateFrequency: 3
+    GoogleInEditorCheckFrequency: 3
+    GoogleUpdateSynchronization: 1
+    GoogleUpdateDelay: 5
+    Google_Password: change_this
+    Assets: []

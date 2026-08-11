@@ -25,3 +25,18 @@ Music powered by BreakingCopyright: https://breakingcopyright.com
 
 > CC BY 3.0 允許商業使用與改作，條件是必須標示原作者。
 > 上方的英文區塊即為原作者要求的標示格式，散布或公開展示本作品時請一併保留。
+
+## 字型 / Fonts
+
+### Noto Sans CJK
+
+| 項目 | 內容 |
+| --- | --- |
+| 字型 | Noto Sans TC / JP / KR（Variable） |
+| 作者 | Google |
+| 來源 | <https://github.com/notofonts/noto-cjk> |
+| 授權 | [SIL Open Font License 1.1](https://scripts.sil.org/OFL) |
+| 專案檔案 | `Assets/Fonts/NotoSans{TC,JP,KR}-VF.ttf` |
+
+> OFL 允許自由使用、修改與嵌入軟體散布，條件是不得單獨販售字型本身，
+> 且衍生字型不得使用保留字型名稱。授權全文見 `Assets/Fonts/OFL.txt`。
