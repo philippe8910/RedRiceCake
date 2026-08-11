@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MooncakeSplash.unity
+    guid: 97d81aad613143aea769e57286c2aff1
+  - enabled: 1
+    path: Assets/Scenes/MooncakeMainMenu.unity
+    guid: fd5a0bf94aeb4e80a41d55c3c6ce4716
+  - enabled: 1
+    path: Assets/Scenes/ChineseMooncakeDemo.unity
+    guid: db3add4b60d77f64294c8dcdf5b725ab
+  - enabled: 1
+    path: Assets/Scenes/IndonesianMooncakeDemo.unity
+    guid: 1dcf9ac1972947fbb91d1827c06ebc5e
+  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: bc5e445dcc8ee5b4b9212fad2b6089a7
   m_configObjects:
