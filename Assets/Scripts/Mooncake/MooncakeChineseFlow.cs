@@ -29,6 +29,8 @@ public class MooncakeChineseFlow : MonoBehaviour
     [Tooltip("烤盤：三顆放滿之後才開放抓取")]
     public MooncakeBakingPan bakingPan;
     public MooncakeBakeOven ovenStation;
+    [Tooltip("最後一輪出爐、烤盤滑出來時在玩家周圍放彩帶")]
+    public MooncakeCelebration celebration;
 
     [Header("抓取用麵團")]
     [Tooltip("跟「月餅-麵團-壓扁」同一個模型、可 XR Grab 的 Prefab")]
@@ -70,7 +72,10 @@ public class MooncakeChineseFlow : MonoBehaviour
             flattenStation.onWrapComplete.AddListener(HandleWrapComplete);
 
         if (ovenStation != null)
+        {
             ovenStation.onBakeComplete.AddListener(HandleBakeComplete);
+            ovenStation.onPanSlidOut.AddListener(HandlePanSlidOut);
+        }
 
         if (traySlots != null)
         {
@@ -89,7 +94,10 @@ public class MooncakeChineseFlow : MonoBehaviour
             flattenStation.onWrapComplete.RemoveListener(HandleWrapComplete);
 
         if (ovenStation != null)
+        {
             ovenStation.onBakeComplete.RemoveListener(HandleBakeComplete);
+            ovenStation.onPanSlidOut.RemoveListener(HandlePanSlidOut);
+        }
 
         if (traySlots != null)
         {
@@ -139,6 +147,13 @@ public class MooncakeChineseFlow : MonoBehaviour
         }
 
         onAllBaked?.Invoke();
+    }
+
+    /// <summary>烤盤滑出來 = 月餅拿得到了。只有最後一輪才慶祝，第一輪出爐是要去刷蛋液的。</summary>
+    private void HandlePanSlidOut()
+    {
+        if (BakeRound < Mathf.Max(1, bakesBeforeDone)) return;
+        if (celebration != null) celebration.Celebrate();
     }
 
     private void HandleSlotEggWashed(MooncakeTraySlot slot)
