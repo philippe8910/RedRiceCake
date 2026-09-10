@@ -8,14 +8,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
-/// 把「第一顆月餅教學」整組搭進 ChineseMooncakeDemo 場景：
+/// 把「第一顆月餅教學」整組搭進月餅場景：
 /// 文字板（world-space canvas + 打字效果）、箭頭範本、以及自動接線的 MooncakeTutorial。
+///
+/// 兩個場景都能建。站點是執行時自動找的，所以兩邊唯一的差別是
+/// <see cref="MooncakeTutorial.Variant"/>——它決定成形那一步要說
+/// 「塞進模具」還是「蓋上印章」。
 ///
 /// 重複執行會整組重建，只砍自己建的根物件「月餅-教學」，不動場景其他東西。
 /// </summary>
 public static class MooncakeTutorialBuilder
 {
-    const string k_ScenePath = "Assets/Scenes/ChineseMooncakeDemo.unity";
+    const string k_ChineseScene = "Assets/Scenes/ChineseMooncakeDemo.unity";
+    const string k_IndonesianScene = "Assets/Scenes/IndonesianMooncakeDemo.unity";
     const string k_RootName = "月餅-教學";
     const string k_MatFolder = "Assets/Materials/MooncakeDemo";
     const string k_MeshFolder = "Assets/Meshes";
@@ -28,40 +33,69 @@ public static class MooncakeTutorialBuilder
     const float k_PanelHeight = 210f;
     const float k_PanelScale = 0.0009f;
 
-    [MenuItem("Tools/月餅 Demo/建立(重建) 第一顆教學")]
-    public static void BuildMenu()
+    [MenuItem("Tools/月餅 Demo/建立(重建) 第一顆教學 - 中式")]
+    public static void BuildChineseMenu()
     {
-        Build(true);
+        Build(k_ChineseScene, MooncakeTutorial.Variant.中式模具, true);
     }
 
-    [MenuItem("Tools/月餅 Demo/移除 第一顆教學")]
+    [MenuItem("Tools/月餅 Demo/建立(重建) 第一顆教學 - 印尼")]
+    public static void BuildIndonesianMenu()
+    {
+        Build(k_IndonesianScene, MooncakeTutorial.Variant.印尼印章, true);
+    }
+
+    [MenuItem("Tools/月餅 Demo/建立(重建) 第一顆教學 - 兩個場景")]
+    public static void BuildBothMenu()
+    {
+        BuildBoth(true);
+    }
+
+    [MenuItem("Tools/月餅 Demo/移除 第一顆教學（兩個場景）")]
     public static void RemoveMenu()
     {
-        var scene = OpenTargetScene();
-        int removed = RemoveExisting(scene);
+        int removed = 0;
+        foreach (var path in new[] { k_ChineseScene, k_IndonesianScene })
+        {
+            var scene = OpenTargetScene(path);
+            removed += RemoveExisting(scene);
 
-        EditorSceneManager.MarkSceneDirty(scene);
-        EditorSceneManager.SaveScene(scene);
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+        }
         Debug.Log($"[月餅教學] 已移除 {removed} 個舊的教學根物件");
     }
 
-    /// <summary>給 -executeMethod 用的入口。</summary>
+    /// <summary>給 -executeMethod 用的入口：兩個場景一起建。</summary>
     public static void BuildFromCommandLine()
     {
-        Build(true);
+        BuildBoth(true);
         EditorApplication.Exit(0);
+    }
+
+    /// <summary>給 -executeMethod 用：只重建印尼那一個場景，中式完全不碰。</summary>
+    public static void BuildIndonesianFromCommandLine()
+    {
+        Build(k_IndonesianScene, MooncakeTutorial.Variant.印尼印章, true);
+        EditorApplication.Exit(0);
+    }
+
+    public static void BuildBoth(bool saveScene)
+    {
+        Build(k_ChineseScene, MooncakeTutorial.Variant.中式模具, saveScene);
+        Build(k_IndonesianScene, MooncakeTutorial.Variant.印尼印章, saveScene);
     }
 
     // ------------------------------------------------------------------
 
-    public static void Build(bool saveScene)
+    public static void Build(string scenePath, MooncakeTutorial.Variant variant, bool saveScene)
     {
-        var scene = OpenTargetScene();
+        var scene = OpenTargetScene(scenePath);
 
         var flow = Object.FindObjectOfType<MooncakeChineseFlow>();
         if (flow == null)
         {
-            Debug.LogError("[月餅教學] 場景裡找不到 MooncakeChineseFlow，先確認開的是 ChineseMooncakeDemo");
+            Debug.LogError($"[月餅教學] 「{scenePath}」裡找不到 MooncakeChineseFlow，教學建不起來");
             return;
         }
 
@@ -71,8 +105,9 @@ public static class MooncakeTutorialBuilder
         root.transform.position = flow.transform.position + Vector3.up * 1.4f;
 
         var tutorial = root.AddComponent<MooncakeTutorial>();
+        tutorial.variant = variant;
         tutorial.flow = flow;
-        tutorial.texts = MooncakeTutorial.BuildDefaultTexts();
+        tutorial.texts = MooncakeTutorial.BuildDefaultTexts(variant);
 
         tutorial.panel = BuildPanel(root.transform);
         tutorial.arrowTemplate = BuildArrowTemplate(root.transform);
@@ -88,17 +123,17 @@ public static class MooncakeTutorialBuilder
 
         Selection.activeGameObject = root;
 
-        Debug.Log("[月餅教學] 建置完成：文字板 + 箭頭範本已放進「" + k_RootName + "」。\n" +
+        Debug.Log($"[月餅教學] 「{scene.name}」建置完成（{variant}）：文字板 + 箭頭範本已放進「{k_RootName}」。\n" +
                   "站點（麵團球／壓扁站／模具／烤盤／烤箱／餡料碗／蛋液刷）都是執行時自動找，不用手動連線。\n" +
                   "註：中文字要等執行時的動態字型 fallback 才會出現，Editor 裡看到方框是正常的。");
     }
 
-    static Scene OpenTargetScene()
+    static Scene OpenTargetScene(string scenePath)
     {
         var active = SceneManager.GetActiveScene();
-        if (active.path == k_ScenePath) return active;
+        if (active.path == scenePath) return active;
 
-        return EditorSceneManager.OpenScene(k_ScenePath, OpenSceneMode.Single);
+        return EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
     }
 
     static int RemoveExisting(Scene scene)
@@ -181,6 +216,11 @@ public static class MooncakeTutorialBuilder
         audio.playOnAwake = false;
         audio.spatialBlend = 0f;       // 打字聲直接在耳邊，不做空間化
         audio.volume = 1f;
+
+        // 世界空間 Canvas 一樣吃深度測試，桌子／烤箱擋在前面時字會被切掉。
+        // 這支把 UI 與 TMP 材質的 ZTest 改成 Always、renderQueue 拉到 Overlay，
+        // 面板就不會再被場景物件穿過去。
+        go.AddComponent<MooncakeAlwaysOnTop>();
 
         var panel = go.AddComponent<MooncakeTutorialPanel>();
         panel.group = go.GetComponent<CanvasGroup>();

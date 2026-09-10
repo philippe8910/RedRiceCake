@@ -99,6 +99,18 @@ public class MooncakeTraySlot : MonoBehaviour
         if (IsFilled) return;
         if (!other.CompareTag(acceptTag)) return;
 
+        // 印尼流程：月餅蓋好後會脫離印章，是玩家用手拿過來的。
+        // 這種情況下 GetComponentInParent 找不到站點（它已經不是印章的子物件了），
+        // 改從月餅身上的標記回頭找，收下之後把它收掉。
+        var detached = other.GetComponentInParent<MooncakeDetachedPiece>();
+        if (detached != null)
+        {
+            // 傳 null：站點的通知交給 Consume 做，免得 ReleaseMooncake 被叫兩次
+            Place(null);
+            detached.Consume();
+            return;
+        }
+
         var mold = other.GetComponentInParent<MooncakeMoldStation>();
         if (requireMooncakeOnMold && (mold == null || !mold.HasMooncake)) return;
 

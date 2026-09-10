@@ -71,8 +71,8 @@ public static class MooncakeTutorialLocalization
 
         foreach (var row in BuildRows())
         {
-            addedTerms += Apply(source, MooncakeTutorial.TitleTerm(row.step), row.titles, slot, overwrite, ref wrote, ref kept);
-            addedTerms += Apply(source, MooncakeTutorial.BodyTerm(row.step), row.bodies, slot, overwrite, ref wrote, ref kept);
+            addedTerms += Apply(source, row.TitleTerm, row.titles, slot, overwrite, ref wrote, ref kept);
+            addedTerms += Apply(source, row.BodyTerm, row.bodies, slot, overwrite, ref wrote, ref kept);
         }
 
         source.UpdateDictionary(true);
@@ -133,6 +133,17 @@ public static class MooncakeTutorialLocalization
         public MooncakeTutorial.Step step;
         public string[] titles;
         public string[] bodies;
+
+        /// <summary>
+        /// 變體用的步驟代號（例如印尼場景的 StampMooncake）。
+        /// 留空就照 step 推出來，也就是中式那一份。
+        /// </summary>
+        public string termKey;
+
+        string Key => string.IsNullOrEmpty(termKey) ? MooncakeTutorial.TermKey(step) : termKey;
+
+        public string TitleTerm => MooncakeTutorial.DefaultTermPrefix + Key + "_Title";
+        public string BodyTerm => MooncakeTutorial.DefaultTermPrefix + Key + "_Body";
     }
 
     static IEnumerable<Row> BuildRows()
@@ -235,6 +246,22 @@ public static class MooncakeTutorialLocalization
             }
         };
 
+        // 印尼場景的成形步驟：同一個 Step，但改成蓋印章
+        yield return new Row
+        {
+            step = MooncakeTutorial.Step.放進模具,
+            termKey = "StampMooncake",
+            titles = new[] { "⑦ Stamp the pattern", "⑦ 蓋上印章", "⑦ 印を押す", "⑦ 도장 찍기", "⑦ Cap adonannya" },
+            bodies = new[]
+            {
+                "Pick up the finished dough and press it under the stamp to mark the pattern.",
+                "拿起做好的麵團，放到印章下面蓋出花紋。",
+                "出来た生地を持ち上げ、印の下に置いて模様を押します。",
+                "완성된 반죽을 들어 도장 아래에 놓고 무늬를 찍으세요.",
+                "Angkat adonan yang sudah jadi lalu tekan dengan cap untuk memberi motif."
+            }
+        };
+
         yield return new Row
         {
             step = MooncakeTutorial.Step.放上烤盤,
@@ -246,6 +273,22 @@ public static class MooncakeTutorialLocalization
                 "型を持ち、天板の光っているマスに合わせて押し付けます。この天板には {count} 個です。",
                 "틀을 잡고 팬에서 빛나는 칸에 맞춰 눌러 주세요. 이 팬에는 {count}개가 들어갑니다.",
                 "Pegang cetakan, arahkan ke kotak yang menyala di loyang, lalu tekan. Loyang ini butuh {count} buah."
+            }
+        };
+
+        // 印尼場景：月餅蓋完會脫離印章，改成用手拿去烤盤
+        yield return new Row
+        {
+            step = MooncakeTutorial.Step.放上烤盤,
+            termKey = "PlaceOnTrayByHand",
+            titles = new[] { "⑧ Put it on the tray", "⑧ 放到烤盤上", "⑧ 天板に置く", "⑧ 팬에 올리기", "⑧ Taruh di loyang" },
+            bodies = new[]
+            {
+                "The stamped mooncake stays on the table. Pick it up and place it in a glowing slot. This tray takes {count}.",
+                "蓋好的月餅會留在桌上，用手拿起來放到烤盤發亮的格子裡。這一盤要做 {count} 顆。",
+                "押した月餅は台に残ります。手で持ち上げて、光っている天板のマスに置いてください。この天板は {count} 個です。",
+                "찍은 월병은 작업대에 남습니다. 손으로 집어 팬의 빛나는 자리에 놓으세요. 이 팬은 {count}개입니다.",
+                "Kue bulan yang sudah dicap tetap di meja. Ambil dengan tangan dan taruh di kotak loyang yang menyala. Loyang ini untuk {count} buah."
             }
         };
 

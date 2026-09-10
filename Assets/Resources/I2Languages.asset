@@ -11,34 +11,37 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f0b0c553be8edd4682e9180fdd13e37, type: 3}
   m_Name: I2Languages
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   mSource:
+    UserAgreesToHaveItOnTheScene: 0
+    UserAgreesToHaveItInsideThePluginsFolder: 0
+    GoogleLiveSyncIsUptoDate: 1
     mTerms:
     - Term: Menu/Chinese
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Chinese
       - "\u4E2D\u5F0F\u6708\u9905"
       - "\u4E2D\u83EF\u98A8\u6708\u9905"
       - "\uC911\uD654\uD48D \uC6D4\uBCD1"
-      - "Kue Bulan Tionghoa"
+      - Kue Bulan Tionghoa
       Flags: 0101010101
       Languages_Touch: []
     - Term: Menu/Indonesian
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Indonesian
       - "\u5370\u5C3C\u6708\u9905"
       - "\u30A4\u30F3\u30C9\u30CD\u30B7\u30A2\u6708\u9905"
       - "\uC778\uB3C4\uB124\uC2DC\uC544 \uC6D4\uBCD1"
-      - "Kue Bulan Indonesia"
+      - Kue Bulan Indonesia
       Flags: 0101010101
       Languages_Touch: []
     - Term: Menu/Settings
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Settings
       - "\u8A2D\u5B9A"
@@ -49,18 +52,333 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Menu/Title
       TermType: 0
-      Description:
+      Description: 
       Languages:
-      - "MOONCAKE VR"
+      - MOONCAKE VR
       - "\u6708\u9905 VR"
       - "\u30E0\u30FC\u30F3\u30B1\u30FC\u30AD VR"
       - "\uC6D4\uBCD1 VR"
-      - "MOONCAKE VR"
+      - MOONCAKE VR
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/BakeAgain_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - The egg wash is done. Put the tray back in the oven until golden.
+      - "\u86CB\u6DB2\u90FD\u5237\u597D\u4E86\uFF0C\u628A\u70E4\u76E4\u518D\u9001\u56DE\u70E4\u7BB1\uFF0C\u70E4\u51FA\u91D1\u9EC3\u8272\u3002"
+      - "\u5375\u6DB2\u304C\u5857\u308C\u307E\u3057\u305F\u3002\u5929\u677F\u3092\u30AA\u30FC\u30D6\u30F3\u306B\u623B\u3057\u3066\u3001\u304D\u3064\u306D\u8272\u306B\u713C\u304D\u307E\u3059\u3002"
+      - "\uB2EC\uAC40\uBB3C\uC744 \uB2E4 \uBC1C\uB790\uC2B5\uB2C8\uB2E4. \uD32C\uC744
+        \uB2E4\uC2DC \uC624\uBE10\uC5D0 \uB123\uC5B4 \uB178\uB987\uD558\uAC8C \uAD6C\uC6B0\uC138\uC694."
+      - Olesannya selesai. Masukkan kembali loyang ke oven sampai keemasan.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/BakeAgain_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u246A Bake again"
+      - "\u246A \u518D\u70E4\u4E00\u6B21"
+      - "\u246A \u3082\u3046\u4E00\u5EA6\u713C\u304F"
+      - "\u246A \uD55C \uBC88 \uB354 \uAD7D\uAE30"
+      - "\u246A Panggang lagi"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/EggWash_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - First bake is done! Pick up the brush and paint every mooncake once.
+      - "\u7B2C\u4E00\u8F2A\u70E4\u597D\u4E86\uFF01\u62FF\u8D77\u5237\u5B50\uFF0C\u5728\u6BCF\u4E00\u9846\u6708\u9905\u4E0A\u90FD\u5237\u904E\u4E00\u6B21\u3002"
+      - "\u4E00\u5EA6\u76EE\u306E\u713C\u304D\u4E0A\u304C\u308A\u3067\u3059\uFF01\u5237\u6BDB\u3092\u6301\u3063\u3066\u3001\u6708\u9905\u3059\u3079\u3066\u306B\u4E00\u5EA6\u305A\u3064\u5857\u308A\u307E\u3059\u3002"
+      - "1\uCC28 \uAD7D\uAE30 \uC644\uB8CC! \uBD93\uC744 \uB4E4\uACE0 \uC6D4\uBCD1\uB9C8\uB2E4
+        \uD55C \uBC88\uC529 \uBC1C\uB77C \uC8FC\uC138\uC694."
+      - Panggangan pertama selesai! Ambil kuasnya dan oles setiap kue sekali.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/EggWash_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2469 Brush on egg wash"
+      - "\u2469 \u5237\u4E0A\u86CB\u6DB2"
+      - "\u2469 \u5375\u6DB2\u3092\u5857\u308B"
+      - "\u2469 \uB2EC\uAC40\uBB3C \uBC14\uB974\uAE30"
+      - "\u2469 Oles kuning telur"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/Finish_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - The mooncakes are out of the oven. Careful, they are hot.
+      - "\u6708\u9905\u51FA\u7210\u56C9\uFF0C\u5C0F\u5FC3\u71D9\u3002"
+      - "\u6708\u9905\u304C\u713C\u304D\u4E0A\u304C\u308A\u307E\u3057\u305F\u3002\u71B1\u3044\u306E\u3067\u6C17\u3092\u3064\u3051\u3066\u3002"
+      - "\uC6D4\uBCD1\uC774 \uB098\uC654\uC2B5\uB2C8\uB2E4. \uB728\uAC70\uC6B0\uB2C8
+        \uC870\uC2EC\uD558\uC138\uC694."
+      - Kue bulannya sudah matang. Hati-hati, masih panas.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/Finish_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - Done!
+      - "\u5B8C\u6210\uFF01"
+      - "\u5B8C\u6210\uFF01"
+      - "\uC644\uC131!"
+      - Selesai!
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/FlattenDough_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - Pat the dough {pats} times until it becomes a flat wrapper.
+      - "\u7528\u624B\u8F15\u62CD\u9EB5\u5718 {pats} \u4E0B\uFF0C\u628A\u5B83\u62CD\u6210\u4E00\u5F35\u9905\u76AE\u3002"
+      - "\u751F\u5730\u3092 {pats} \u56DE\u305F\u305F\u3044\u3066\u3001\u5E73\u3089\u306A\u76AE\u306B\u3057\u307E\u3059\u3002"
+      - "\uBC18\uC8FD\uC744 {pats}\uBC88 \uB450\uB4DC\uB824 \uB0A9\uC791\uD55C \uD53C\uB85C
+        \uB9CC\uB4DC\uC138\uC694."
+      - Tepuk adonan {pats} kali sampai menjadi lembaran kulit.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/FlattenDough_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2462 Flatten the dough"
+      - "\u2462 \u628A\u9EB5\u5718\u62CD\u6241"
+      - "\u2462 \u751F\u5730\u3092\u5E73\u3089\u306B\u3059\u308B"
+      - "\u2462 \uBC18\uC8FD \uB0A9\uC791\uD558\uAC8C"
+      - "\u2462 Pipihkan adonan"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/GrabDough_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - Reach for the dough ball and press the trigger to grab a piece.
+      - "\u628A\u624B\u4F38\u5230\u9EB5\u5718\u7403\u4E0A\uFF0C\u6309\u4E0B\u6273\u6A5F\u9375\u6293\u4E00\u5718\u9EB5\u5718\u51FA\u4F86\u3002"
+      - "\u751F\u5730\u306E\u7389\u306B\u624B\u3092\u4F38\u3070\u3057\u3001\u30C8\u30EA\u30AC\u30FC\u3092\u62BC\u3057\u3066\u4E00\u3064\u304B\u307F\u53D6\u308A\u307E\u3059\u3002"
+      - "\uBC18\uC8FD \uB369\uC5B4\uB9AC\uC5D0 \uC190\uC744 \uBED7\uC5B4 \uD2B8\uB9AC\uAC70\uB97C
+        \uB20C\uB7EC \uD55C \uB369\uC774\uB97C \uC9D1\uC73C\uC138\uC694."
+      - Arahkan tangan ke bola adonan lalu tekan trigger untuk mengambil sepotong.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/GrabDough_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2460 Take some dough"
+      - "\u2460 \u62FF\u4E00\u5718\u9EB5\u5718"
+      - "\u2460 \u751F\u5730\u3092\u53D6\u308B"
+      - "\u2460 \uBC18\uC8FD \uC9D1\uAE30"
+      - "\u2460 Ambil adonan"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PickFilling_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - The bowls hold lotus seed, red bean, butter and chocolate. Grab whichever
+        you like.
+      - "\u65C1\u908A\u7684\u7897\u88E1\u6709\u84EE\u5B50\u3001\u7D05\u8C46\u3001\u5976\u6CB9\u3001\u5DE7\u514B\u529B\uFF0C\u4EFB\u9078\u4E00\u7A2E\u6293\u8D77\u4F86\u3002"
+      - "\u96A3\u306E\u5668\u306B\u84EE\u306E\u5B9F\u3001\u3042\u305A\u304D\u3001\u30D0\u30BF\u30FC\u3001\u30C1\u30E7\u30B3\u30EC\u30FC\u30C8\u304C\u3042\u308A\u307E\u3059\u3002\u597D\u304D\u306A\u3082\u306E\u3092\u63B4\u3093\u3067\u304F\u3060\u3055\u3044\u3002"
+      - "\uC606 \uADF8\uB987\uC5D0 \uC5F0\uBC25, \uD325, \uBC84\uD130, \uCD08\uCF5C\uB9BF\uC774
+        \uC788\uC2B5\uB2C8\uB2E4. \uC6D0\uD558\uB294 \uAC83\uC744 \uC9D1\uC73C\uC138\uC694."
+      - Di mangkuk ada biji teratai, kacang merah, mentega, dan cokelat. Ambil salah
+        satu.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PickFilling_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2463 Pick a filling"
+      - "\u2463 \u6311\u4E00\u7A2E\u9921\u6599"
+      - "\u2463 \u9921\u3092\u9078\u3076"
+      - "\u2463 \uC18C \uACE0\uB974\uAE30"
+      - "\u2463 Pilih isian"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PlaceFilling_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - Drop the filling into the dent in the middle of the wrapper.
+      - "\u628A\u624B\u4E0A\u7684\u9921\u6599\uFF0C\u653E\u5230\u9905\u76AE\u4E2D\u592E\u7684\u51F9\u69FD\u88E1\u3002"
+      - "\u624B\u306B\u6301\u3063\u305F\u9921\u3092\u3001\u76AE\u306E\u4E2D\u592E\u306E\u304F\u307C\u307F\u306B\u5165\u308C\u307E\u3059\u3002"
+      - "\uC190\uC5D0 \uB4E0 \uC18C\uB97C \uD53C \uAC00\uC6B4\uB370 \uD648\uC5D0
+        \uB123\uC73C\uC138\uC694."
+      - Taruh isian ke cekungan di tengah kulit.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PlaceFilling_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2464 Add the filling"
+      - "\u2464 \u628A\u9921\u653E\u9032\u9905\u76AE"
+      - "\u2464 \u9921\u3092\u5165\u308C\u308B"
+      - "\u2464 \uC18C \uB123\uAE30"
+      - "\u2464 Masukkan isian"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PlaceOnTable_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - Place the dough on the glowing spot on the table.
+      - "\u628A\u624B\u88E1\u7684\u9EB5\u5718\uFF0C\u653E\u5230\u6AAF\u9762\u4E0A\u767C\u4EAE\u7684\u4F4D\u7F6E\u3002"
+      - "\u624B\u306B\u6301\u3063\u305F\u751F\u5730\u3092\u3001\u5149\u3063\u3066\u3044\u308B\u5834\u6240\u306B\u7F6E\u304D\u307E\u3059\u3002"
+      - "\uC190\uC5D0 \uB4E0 \uBC18\uC8FD\uC744 \uC791\uC5C5\uB300\uC5D0\uC11C \uBE5B\uB098\uB294
+        \uC790\uB9AC\uC5D0 \uB193\uC73C\uC138\uC694."
+      - Taruh adonan di titik yang menyala pada meja.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PlaceOnTable_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2461 Put it on the table"
+      - "\u2461 \u653E\u5230\u6AAF\u9762\u4E0A"
+      - "\u2461 \u53F0\u306E\u4E0A\u306B\u7F6E\u304F"
+      - "\u2461 \uC791\uC5C5\uB300\uC5D0 \uB193\uAE30"
+      - "\u2461 Letakkan di meja"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PlaceOnTray_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - Hold the mold over a glowing slot on the tray and press down. This tray takes
+        {count}.
+      - "\u63E1\u8457\u6A21\u5177\uFF0C\u5C0D\u6E96\u70E4\u76E4\u4E0A\u767C\u4EAE\u7684\u683C\u5B50\u58D3\u4E0B\u53BB\u3002\u9019\u4E00\u76E4\u8981\u505A
+        {count} \u9846\u3002"
+      - "\u578B\u3092\u6301\u3061\u3001\u5929\u677F\u306E\u5149\u3063\u3066\u3044\u308B\u30DE\u30B9\u306B\u5408\u308F\u305B\u3066\u62BC\u3057\u4ED8\u3051\u307E\u3059\u3002\u3053\u306E\u5929\u677F\u306B\u306F
+        {count} \u500B\u3067\u3059\u3002"
+      - "\uD2C0\uC744 \uC7A1\uACE0 \uD32C\uC5D0\uC11C \uBE5B\uB098\uB294 \uCE78\uC5D0
+        \uB9DE\uCDB0 \uB20C\uB7EC \uC8FC\uC138\uC694. \uC774 \uD32C\uC5D0\uB294 {count}\uAC1C\uAC00
+        \uB4E4\uC5B4\uAC11\uB2C8\uB2E4."
+      - Pegang cetakan, arahkan ke kotak yang menyala di loyang, lalu tekan. Loyang
+        ini butuh {count} buah.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PlaceOnTray_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2467 Press onto the tray"
+      - "\u2467 \u58D3\u5230\u70E4\u76E4\u4E0A"
+      - "\u2467 \u5929\u677F\u306B\u62BC\u3059"
+      - "\u2467 \uD32C\uC5D0 \uCC0D\uAE30"
+      - "\u2467 Tekan ke loyang"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PutInMold_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - Pick up the finished dough and press it into the mooncake mold.
+      - "\u62FF\u8D77\u505A\u597D\u7684\u9EB5\u5718\uFF0C\u585E\u9032\u6708\u9905\u6A21\u5177\u88E1\u58D3\u51FA\u82B1\u7D0B\u3002"
+      - "\u51FA\u6765\u305F\u751F\u5730\u3092\u6301\u3061\u4E0A\u3052\u3001\u6708\u9905\u306E\u578B\u306B\u62BC\u3057\u8FBC\u3093\u3067\u6A21\u69D8\u3092\u3064\u3051\u307E\u3059\u3002"
+      - "\uC644\uC131\uB41C \uBC18\uC8FD\uC744 \uB4E4\uC5B4 \uC6D4\uBCD1 \uD2C0\uC5D0
+        \uB20C\uB7EC \uBB34\uB2AC\uB97C \uCC0D\uC73C\uC138\uC694."
+      - Angkat adonan yang sudah jadi dan tekan ke dalam cetakan kue bulan.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PutInMold_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2466 Into the mold"
+      - "\u2466 \u653E\u9032\u6A21\u5177"
+      - "\u2466 \u578B\u306B\u5165\u308C\u308B"
+      - "\u2466 \uD2C0\uC5D0 \uB123\uAE30"
+      - "\u2466 Masukkan ke cetakan"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/TrayIntoOven_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - All {count} are ready. Pick up the whole tray and slide it into the oven.
+      - "{count} \u9846\u90FD\u6392\u597D\u4E86\uFF0C\u628A\u6574\u500B\u70E4\u76E4\u7AEF\u8D77\u4F86\uFF0C\u653E\u9032\u70E4\u7BB1\u88E1\u9762\u3002"
+      - "{count} \u500B\u305D\u308D\u3044\u307E\u3057\u305F\u3002\u5929\u677F\u3054\u3068\u6301\u3061\u4E0A\u3052\u3066\u30AA\u30FC\u30D6\u30F3\u306B\u5165\u308C\u307E\u3059\u3002"
+      - "{count}\uAC1C\uAC00 \uBAA8\uB450 \uC900\uBE44\uB410\uC2B5\uB2C8\uB2E4. \uD32C\uC9F8
+        \uB4E4\uC5B4 \uC624\uBE10\uC5D0 \uB123\uC73C\uC138\uC694."
+      - '{count} sudah tersusun. Angkat loyangnya dan masukkan ke dalam oven.'
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/TrayIntoOven_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2468 Into the oven"
+      - "\u2468 \u9001\u9032\u70E4\u7BB1"
+      - "\u2468 \u30AA\u30FC\u30D6\u30F3\u3078"
+      - "\u2468 \uC624\uBE10\uC5D0 \uB123\uAE30"
+      - "\u2468 Masukkan ke oven"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/WrapDough_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - Pat it {wraps} more times to close the wrapper around the filling.
+      - "\u518D\u8F15\u62CD {wraps} \u4E0B\uFF0C\u8B93\u9905\u76AE\u6162\u6162\u6536\u53E3\u5305\u4F4F\u9921\u6599\u3002"
+      - "\u3055\u3089\u306B {wraps} \u56DE\u305F\u305F\u3044\u3066\u3001\u76AE\u3067\u9921\u3092\u5305\u307F\u307E\u3059\u3002"
+      - "{wraps}\uBC88 \uB354 \uB450\uB4DC\uB824 \uD53C\uB85C \uC18C\uB97C \uAC10\uC2F8\uC138\uC694."
+      - Tepuk {wraps} kali lagi supaya kulit menutup isian.
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/WrapDough_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2465 Wrap it up"
+      - "\u2465 \u628A\u9921\u5305\u8D77\u4F86"
+      - "\u2465 \u5305\u3080"
+      - "\u2465 \uAC10\uC2F8\uAE30"
+      - "\u2465 Bungkus isian"
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Pause/MainMenu
+      TermType: 0
+      Description: 
+      Languages:
+      - Main Menu
+      - "\u56DE\u4E3B\u9078\u55AE"
+      - "\u30E1\u30A4\u30F3\u30E1\u30CB\u30E5\u30FC"
+      - "\uBA54\uC778 \uBA54\uB274"
+      - Menu Utama
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Pause/Resume
+      TermType: 0
+      Description: 
+      Languages:
+      - Resume
+      - "\u7E7C\u7E8C\u904A\u6232"
+      - "\u30B2\u30FC\u30E0\u306B\u623B\u308B"
+      - "\uACC4\uC18D\uD558\uAE30"
+      - Lanjutkan
+      Flags: 0101010101
+      Languages_Touch: []
+    - Term: Pause/Title
+      TermType: 0
+      Description: 
+      Languages:
+      - PAUSED
+      - "\u66AB\u505C"
+      - "\u4E00\u6642\u505C\u6B62"
+      - "\uC77C\uC2DC\uC815\uC9C0"
+      - JEDA
       Flags: 0101010101
       Languages_Touch: []
     - Term: Settings/Back
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Back
       - "\u8FD4\u56DE"
@@ -71,7 +389,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Settings/Language
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Language
       - "\u8A9E\u8A00"
@@ -82,40 +400,40 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Settings/MasterVolume
       TermType: 0
-      Description:
+      Description: 
       Languages:
-      - "Master Volume"
+      - Master Volume
       - "\u4E3B\u97F3\u91CF"
       - "\u30DE\u30B9\u30BF\u30FC\u97F3\u91CF"
       - "\uC804\uCCB4 \uC74C\uB7C9"
-      - "Volume Utama"
+      - Volume Utama
       Flags: 0101010101
       Languages_Touch: []
     - Term: Settings/MoveSpeed
       TermType: 0
-      Description:
+      Description: 
       Languages:
-      - "Movement Speed"
+      - Movement Speed
       - "\u79FB\u52D5\u901F\u5EA6"
       - "\u79FB\u52D5\u901F\u5EA6"
       - "\uC774\uB3D9 \uC18D\uB3C4"
-      - "Kecepatan Gerak"
+      - Kecepatan Gerak
       Flags: 0101010101
       Languages_Touch: []
     - Term: Settings/MusicVolume
       TermType: 0
-      Description:
+      Description: 
       Languages:
-      - "Music Volume"
+      - Music Volume
       - "\u97F3\u6A02\u97F3\u91CF"
       - "\u97F3\u697D\u97F3\u91CF"
       - "\uC74C\uC545 \uC74C\uB7C9"
-      - "Volume Musik"
+      - Volume Musik
       Flags: 0101010101
       Languages_Touch: []
     - Term: Settings/QualityLevel
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Quality
       - "\u756B\u8CEA"
@@ -126,40 +444,40 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Settings/RenderScale
       TermType: 0
-      Description:
+      Description: 
       Languages:
-      - "Render Scale"
+      - Render Scale
       - "\u89E3\u6790\u5EA6\u6BD4\u4F8B"
       - "\u89E3\u50CF\u5EA6\u30B9\u30B1\u30FC\u30EB"
       - "\uB80C\uB354 \uBC30\uC728"
-      - "Skala Render"
+      - Skala Render
       Flags: 0101010101
       Languages_Touch: []
     - Term: Settings/ResetDefaults
       TermType: 0
-      Description:
+      Description: 
       Languages:
-      - "Reset Defaults"
+      - Reset Defaults
       - "\u56DE\u5FA9\u9810\u8A2D"
       - "\u521D\u671F\u8A2D\u5B9A\u306B\u623B\u3059"
       - "\uAE30\uBCF8\uAC12\uC73C\uB85C"
-      - "Reset Bawaan"
+      - Reset Bawaan
       Flags: 0101010101
       Languages_Touch: []
     - Term: Settings/SfxVolume
       TermType: 0
-      Description:
+      Description: 
       Languages:
-      - "Sound Effects"
+      - Sound Effects
       - "\u97F3\u6548\u97F3\u91CF"
       - "\u52B9\u679C\u97F3"
       - "\uD6A8\uACFC\uC74C"
-      - "Efek Suara"
+      - Efek Suara
       Flags: 0101010101
       Languages_Touch: []
     - Term: Settings/Shadows
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Shadows
       - "\u9670\u5F71"
@@ -170,18 +488,18 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Settings/SnapAngle
       TermType: 0
-      Description:
+      Description: 
       Languages:
-      - "Snap Angle"
+      - Snap Angle
       - "\u8F49\u5411\u89D2\u5EA6"
       - "\u56DE\u8EE2\u89D2\u5EA6"
       - "\uD68C\uC804 \uAC01\uB3C4"
-      - "Sudut Putar"
+      - Sudut Putar
       Flags: 0101010101
       Languages_Touch: []
     - Term: Settings/Tab/Comfort
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Comfort
       - "\u8212\u9069\u5EA6"
@@ -192,7 +510,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Settings/Tab/General
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - General
       - "\u4E00\u822C"
@@ -203,7 +521,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Settings/Tab/Graphics
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Graphics
       - "\u756B\u9762"
@@ -214,7 +532,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Settings/Title
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - SETTINGS
       - "\u8A2D\u5B9A"
@@ -225,20 +543,20 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Settings/TurnMode
       TermType: 0
-      Description:
+      Description: 
       Languages:
-      - "Turn Mode"
+      - Turn Mode
       - "\u8F49\u5411\u65B9\u5F0F"
       - "\u65CB\u56DE\u65B9\u5F0F"
       - "\uD68C\uC804 \uBC29\uC2DD"
-      - "Mode Putar"
+      - Mode Putar
       Flags: 0101010101
       Languages_Touch: []
     - Term: Settings/Vignette
       TermType: 0
-      Description:
+      Description: 
       Languages:
-      - "Comfort Vignette"
+      - Comfort Vignette
       - "\u6688\u5F71\u6E1B\u6688"
       - "\u30D3\u30CD\u30C3\u30C8"
       - "\uBE44\uB124\uD2B8"
@@ -247,7 +565,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Value/Fast
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Fast
       - "\u5FEB"
@@ -258,7 +576,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Value/High
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - High
       - "\u5F37"
@@ -269,7 +587,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Value/Low
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Low
       - "\u5F31"
@@ -280,7 +598,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Value/Medium
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Medium
       - "\u4E2D"
@@ -291,7 +609,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Value/Normal
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Normal
       - "\u666E\u901A"
@@ -302,7 +620,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Value/Off
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Off
       - "\u95DC"
@@ -313,7 +631,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Value/On
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - On
       - "\u958B"
@@ -324,7 +642,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Value/Slow
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Slow
       - "\u6162"
@@ -335,7 +653,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Value/Smooth
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Smooth
       - "\u5E73\u6ED1"
@@ -346,7 +664,7 @@ MonoBehaviour:
       Languages_Touch: []
     - Term: Value/Snap
       TermType: 0
-      Description:
+      Description: 
       Languages:
       - Snap
       - "\u5206\u6BB5"
@@ -355,9 +673,60 @@ MonoBehaviour:
       - Snap
       Flags: 0101010101
       Languages_Touch: []
+    - Term: Mooncake/Tutorial/StampMooncake_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2466 Stamp the pattern"
+      - "\u2466 \u84CB\u4E0A\u5370\u7AE0"
+      - "\u2466 \u5370\u3092\u62BC\u3059"
+      - "\u2466 \uB3C4\uC7A5 \uCC0D\uAE30"
+      - "\u2466 Cap adonannya"
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/StampMooncake_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - Pick up the finished dough and press it under the stamp to mark the pattern.
+      - "\u62FF\u8D77\u505A\u597D\u7684\u9EB5\u5718\uFF0C\u653E\u5230\u5370\u7AE0\u4E0B\u9762\u84CB\u51FA\u82B1\u7D0B\u3002"
+      - "\u51FA\u6765\u305F\u751F\u5730\u3092\u6301\u3061\u4E0A\u3052\u3001\u5370\u306E\u4E0B\u306B\u7F6E\u3044\u3066\u6A21\u69D8\u3092\u62BC\u3057\u307E\u3059\u3002"
+      - "\uC644\uC131\uB41C \uBC18\uC8FD\uC744 \uB4E4\uC5B4 \uB3C4\uC7A5 \uC544\uB798\uC5D0
+        \uB193\uACE0 \uBB34\uB2AC\uB97C \uCC0D\uC73C\uC138\uC694."
+      - Angkat adonan yang sudah jadi lalu tekan dengan cap untuk memberi motif.
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PlaceOnTrayByHand_Title
+      TermType: 0
+      Description: 
+      Languages:
+      - "\u2467 Put it on the tray"
+      - "\u2467 \u653E\u5230\u70E4\u76E4\u4E0A"
+      - "\u2467 \u5929\u677F\u306B\u7F6E\u304F"
+      - "\u2467 \uD32C\uC5D0 \uC62C\uB9AC\uAE30"
+      - "\u2467 Taruh di loyang"
+      Flags: 0000000000
+      Languages_Touch: []
+    - Term: Mooncake/Tutorial/PlaceOnTrayByHand_Body
+      TermType: 0
+      Description: 
+      Languages:
+      - The stamped mooncake stays on the table. Pick it up and place it in a glowing
+        slot. This tray takes {count}.
+      - "\u84CB\u597D\u7684\u6708\u9905\u6703\u7559\u5728\u684C\u4E0A\uFF0C\u7528\u624B\u62FF\u8D77\u4F86\u653E\u5230\u70E4\u76E4\u767C\u4EAE\u7684\u683C\u5B50\u88E1\u3002\u9019\u4E00\u76E4\u8981\u505A
+        {count} \u9846\u3002"
+      - "\u62BC\u3057\u305F\u6708\u9905\u306F\u53F0\u306B\u6B8B\u308A\u307E\u3059\u3002\u624B\u3067\u6301\u3061\u4E0A\u3052\u3066\u3001\u5149\u3063\u3066\u3044\u308B\u5929\u677F\u306E\u30DE\u30B9\u306B\u7F6E\u3044\u3066\u304F\u3060\u3055\u3044\u3002\u3053\u306E\u5929\u677F\u306F
+        {count} \u500B\u3067\u3059\u3002"
+      - "\uCC0D\uC740 \uC6D4\uBCD1\uC740 \uC791\uC5C5\uB300\uC5D0 \uB0A8\uC2B5\uB2C8\uB2E4.
+        \uC190\uC73C\uB85C \uC9D1\uC5B4 \uD32C\uC758 \uBE5B\uB098\uB294 \uC790\uB9AC\uC5D0
+        \uB193\uC73C\uC138\uC694. \uC774 \uD32C\uC740 {count}\uAC1C\uC785\uB2C8\uB2E4."
+      - Kue bulan yang sudah dicap tetap di meja. Ambil dengan tangan dan taruh di
+        kotak loyang yang menyala. Loyang ini untuk {count} buah.
+      Flags: 0000000000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
-    mTerm_AppName:
+    mTerm_AppName: 
     mLanguages:
     - Name: English
       Code: en
@@ -376,13 +745,18 @@ MonoBehaviour:
       Flags: 0
     IgnoreDeviceLanguage: 0
     _AllowUnloadingLanguages: 0
-    Google_WebServiceURL:
-    Google_SpreadsheetKey:
-    Google_SpreadsheetName:
-    Google_LastUpdatedVersion:
+    Google_WebServiceURL: 
+    Google_SpreadsheetKey: 
+    Google_SpreadsheetName: 
+    Google_LastUpdatedVersion: 
+    Google_Password: change_this
     GoogleUpdateFrequency: 3
     GoogleInEditorCheckFrequency: 3
     GoogleUpdateSynchronization: 1
     GoogleUpdateDelay: 5
-    Google_Password: change_this
     Assets: []
+    Spreadsheet_LocalFileName: 
+    Spreadsheet_LocalCSVSeparator: ','
+    Spreadsheet_LocalCSVEncoding: utf-8
+    Spreadsheet_SpecializationAsRows: 1
+    Spreadsheet_SortRows: 1

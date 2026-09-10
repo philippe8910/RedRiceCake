@@ -15,6 +15,20 @@ using Sirenix.OdinInspector;
 [DisallowMultipleComponent]
 public class MooncakeTutorial : MonoBehaviour
 {
+    /// <summary>
+    /// 兩個場景共用同一支流程（MooncakeChineseFlow），差別只在成形那一步：
+    /// 中式是把麵團塞進模具壓花，印尼是拿印章蓋出花紋。
+    /// 其餘步驟文字完全一樣，所以只有那一步走不同的 term。
+    ///
+    /// 印尼版 bakesBeforeDone = 1，flow 根本不會送出 onEggWashStart，
+    /// 所以「刷蛋液」「再送烤箱」自然不會出現，這裡不用特別擋。
+    /// </summary>
+    public enum Variant
+    {
+        中式模具,
+        印尼印章
+    }
+
     public enum Step
     {
         抓麵團,
@@ -40,6 +54,8 @@ public class MooncakeTutorial : MonoBehaviour
     }
 
     [Header("流程與介面")]
+    [Tooltip("這個場景是中式模具還是印尼印章，只影響成形那一步的文案")]
+    public Variant variant = Variant.中式模具;
     [Tooltip("留空會自動在場景裡找")]
     public MooncakeChineseFlow flow;
     public MooncakeTutorialPanel panel;
@@ -116,7 +132,7 @@ public class MooncakeTutorial : MonoBehaviour
         if (panel == null) panel = GetComponentInChildren<MooncakeTutorialPanel>(true);
         if (arrowTemplate == null) arrowTemplate = GetComponentInChildren<MooncakeTutorialArrow>(true);
 
-        if (texts == null || texts.Count == 0) texts = BuildDefaultTexts();
+        if (texts == null || texts.Count == 0) texts = BuildDefaultTexts(variant);
 
         if (arrowTemplate != null) arrowTemplate.gameObject.SetActive(false);
         if (rememberAcrossSessions) LoadShown();
@@ -439,7 +455,17 @@ public class MooncakeTutorial : MonoBehaviour
 
             case Step.放上烤盤:
                 Add(into, NextEmptySlot());
-                Add(into, flow.moldStation);
+                // 印尼流程要拿的是桌上那顆脫離的月餅，不是印章
+                if (variant == Variant.印尼印章)
+                {
+                    var piece = FindObjectOfType<MooncakeDetachedPiece>();
+                    if (piece != null) Add(into, piece.transform);
+                    else Add(into, flow.moldStation);
+                }
+                else
+                {
+                    Add(into, flow.moldStation);
+                }
                 break;
 
             case Step.烤盤進烤箱:
@@ -542,8 +568,8 @@ public class MooncakeTutorial : MonoBehaviour
 
         var text = FindText(_current);
 
-        string title = Localized(TitleTerm(_current, termPrefix), text.title);
-        string body = Localized(BodyTerm(_current, termPrefix), text.body);
+        string title = Localized(TitleTerm(_current, termPrefix, variant), text.title);
+        string body = Localized(BodyTerm(_current, termPrefix, variant), text.body);
 
         panel.Show(title, Substitute(body));
     }
@@ -574,6 +600,23 @@ public class MooncakeTutorial : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 變體版的 term 代號。印尼場景的「放進模具」實際上是蓋印章，
+    /// 換一個代號讓兩套文案能並存在同一個前綴底下；其餘步驟共用，
+    /// 翻譯不用複製兩份。
+    /// </summary>
+    public static string TermKey(Step step, Variant variant)
+    {
+        if (variant == Variant.印尼印章)
+        {
+            // 印尼流程這兩步跟中式不一樣：成形是蓋印章，
+            // 而且蓋完月餅會脫離印章，是用手拿去烤盤而不是握著整支去壓
+            if (step == Step.放進模具) return "StampMooncake";
+            if (step == Step.放上烤盤) return "PlaceOnTrayByHand";
+        }
+        return TermKey(step);
+    }
+
     public static string TitleTerm(Step step, string prefix = DefaultTermPrefix)
     {
         return prefix + TermKey(step) + "_Title";
@@ -582,6 +625,16 @@ public class MooncakeTutorial : MonoBehaviour
     public static string BodyTerm(Step step, string prefix = DefaultTermPrefix)
     {
         return prefix + TermKey(step) + "_Body";
+    }
+
+    public static string TitleTerm(Step step, string prefix, Variant variant)
+    {
+        return prefix + TermKey(step, variant) + "_Title";
+    }
+
+    public static string BodyTerm(Step step, string prefix, Variant variant)
+    {
+        return prefix + TermKey(step, variant) + "_Body";
     }
 
     private StepText FindText(Step step)
@@ -627,6 +680,47 @@ public class MooncakeTutorial : MonoBehaviour
 
     /// <summary>預設文案；Inspector 上清空再按「載入預設文字」就會回到這一份。</summary>
     public static List<StepText> BuildDefaultTexts()
+    {
+        return BuildDefaultTexts(Variant.中式模具);
+    }
+
+    /// <summary>
+    /// 變體版預設文案。只有成形那一步不一樣，其餘直接沿用中式那份，
+    /// 兩邊文字才不會各自飄走。
+    /// </summary>
+    public static List<StepText> BuildDefaultTexts(Variant variant)
+    {
+        var list = BuildChineseTexts();
+
+        if (variant == Variant.印尼印章)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].step == Step.放進模具)
+                {
+                    list[i] = new StepText
+                    {
+                        step = Step.放進模具,
+                        title = "⑦ 蓋上印章",
+                        body = "拿起做好的麵團，放到印章下面蓋出花紋。"
+                    };
+                }
+                else if (list[i].step == Step.放上烤盤)
+                {
+                    list[i] = new StepText
+                    {
+                        step = Step.放上烤盤,
+                        title = "⑧ 放到烤盤上",
+                        body = "蓋好的月餅會留在桌上，用手拿起來放到烤盤發亮的格子裡。這一盤要做 {顆數} 顆。"
+                    };
+                }
+            }
+        }
+
+        return list;
+    }
+
+    static List<StepText> BuildChineseTexts()
     {
         return new List<StepText>
         {
@@ -690,7 +784,7 @@ public class MooncakeTutorial : MonoBehaviour
     [FoldoutGroup("Debug"), Button("載入預設文字（會覆蓋現有文案）", ButtonSizes.Medium), GUIColor(1f, 0.8f, 0.4f)]
     public void LoadDefaultTexts()
     {
-        texts = BuildDefaultTexts();
+        texts = BuildDefaultTexts(variant);
     }
 
     [FoldoutGroup("Debug"), Tooltip("要測試的步驟")]

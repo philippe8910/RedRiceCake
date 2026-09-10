@@ -66,6 +66,28 @@ public class MooncakeSpawnSource : MooncakeHandTarget
         return Spawn(null);
     }
 
+    [Header("麵團定位")]
+    [Tooltip("生出來的麵團自動補上 MooncakeDoughAnchor：放開會停下來、靠近交接點會對正。\n" +
+             "只對 Tag 是 DoughObject 的生成物作用，餡料不受影響")]
+    public bool addDoughAnchor = true;
+
+    /// <summary>
+    /// 麵團 prefab 是球形碰撞體配 angularDrag 0.05，放到桌上會一路滾。
+    ///
+    /// 這件事刻意在生成時做、不寫進 prefab —— 這兩個 prefab 內含巢狀
+    /// prefab 實例，用 SaveAsPrefabAsset 重存會把內部 fileID 全部重排，
+    /// 場景裡指向它們的參考（flow.doughPiecePrefab）就會斷掉。踩過一次了。
+    /// </summary>
+    private void EnsureDoughAnchor(GameObject go)
+    {
+        if (!addDoughAnchor || go == null) return;
+        if (!go.CompareTag("DoughObject")) return;
+        if (go.GetComponent<Rigidbody>() == null) return;
+        if (go.GetComponent<MooncakeDoughAnchor>() != null) return;
+
+        go.AddComponent<MooncakeDoughAnchor>();
+    }
+
     public GameObject Spawn(HandRef hand)
     {
         if (Time.time - _lastSpawnTime < respawnCooldown) return null;
@@ -98,6 +120,8 @@ public class MooncakeSpawnSource : MooncakeHandTarget
         }
 
         var go = Instantiate(spawnPrefab, pos, rot);
+
+        EnsureDoughAnchor(go);
 
         if (parentToHand && handRoot != null)
         {

@@ -23,8 +23,10 @@ public class MooncakeTutorialPanel : MonoBehaviour
     public Transform playerCamera;
     [Tooltip("離眼睛多遠（公尺）")]
     public float distance = 1.05f;
-    [Tooltip("相對視線中心往上／往下多少，負值 = 往下，不擋住工作檯")]
-    public float heightOffset = -0.16f;
+    [Tooltip("相對視線中心往上／往下多少，正值 = 往上。\n" +
+             "原本是 -0.16（壓在視線下方避開檯面），但那個高度剛好會插進桌子與烤箱，\n" +
+             "字被切掉看不清楚。改成略高於視線，配合 MooncakeAlwaysOnTop 就不會被遮。")]
+    public float heightOffset = 0.10f;
     [Tooltip("相對視線往右／往左多少，正值 = 往右，避開檯面上的鍋子")]
     public float sideOffset = 0.3f;
     [Tooltip("視線偏離超過這個角度才把面板追過來")]
