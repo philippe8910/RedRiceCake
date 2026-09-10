@@ -118,9 +118,15 @@ public class MooncakeMoldStation : MonoBehaviour
 
         var rb = moldedObject.GetComponent<Rigidbody>();
         if (rb == null) rb = moldedObject.AddComponent<Rigidbody>();
-        rb.isKinematic = false;
-        rb.useGravity = true;
-        // 第二、三顆會重用同一個物件，殘留的速度會讓它一出現就飛出去
+
+        // 刻意用 kinematic，不給重力。理由有兩個：
+        //  1. 場上其他可抓物件（模具／印章／烤盤／蛋液刷）全都是 kinematic，
+        //     只有這顆會掉會很突兀。
+        //  2. 脫離點就貼在桌面上，底面與桌面剛好共面。給重力的話那個
+        //     初始接觸會被判成穿透，月餅會直接掉進桌子裡卡在下層橫樑
+        //     —— 實際拍圖抓到過。
+        rb.isKinematic = true;
+        rb.useGravity = false;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 

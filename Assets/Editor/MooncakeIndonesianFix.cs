@@ -34,6 +34,9 @@ public static class MooncakeIndonesianFix
     // 蓋章面要停在月餅上方多少（公尺，世界單位）——留一點縫才看得到底下的月餅
     const float k_FaceClearance = 0.012f;
 
+    // 脫離後的月餅要往烤盤方向讓開多少，才不會整顆被印章壓住拿不到（公尺）
+    const float k_DetachSideOffset = 0.16f;
+
     static readonly (string ch, string ind)[] k_MaterialSwaps =
     {
         ("Assets/Model/texture/material/CHmooncakeUnbake.mat",
@@ -248,10 +251,47 @@ public static class MooncakeIndonesianFix
             go.transform.SetParent(handle.transform, false);
             point = go.transform;
         }
-        // 脫離點：印章軸心正下方、貼在桌面上，月餅一放開就是平躺在桌上
-        point.position = new Vector3(handle.transform.position.x,
-                                     tableY + PieceThickness(handle) * 0.5f,
-                                     handle.transform.position.z);
+        // 脫離點：貼在桌面上，而且要讓開印章。實際拍圖驗過兩次：
+        //   放正下方 → 月餅整顆被印章壓住，玩家伸不進去拿
+        //   往烤盤方向讓開 → 直接落到烤盤上，看起來像已經放好了
+        // 所以改成繞一圈試候選位置，用射線挑一個真的落在桌面、
+        // 又離烤盤夠遠的方向，不用猜。
+        Vector3 basePos = handle.transform.position;
+        float restY = tableY + PieceThickness(handle) * 0.5f;
+        Vector3 chosen = basePos;
+        string why = "找不到合適位置，退回印章正下方";
+
+        var pan = Object.FindObjectOfType<MooncakeBakingPan>();
+        Vector3 panPos = pan != null ? pan.transform.position : basePos + Vector3.forward;
+
+        float bestScore = -1f;
+        for (int i = 0; i < 12; i++)
+        {
+            float a = i * 30f * Mathf.Deg2Rad;
+            var dir = new Vector3(Mathf.Cos(a), 0f, Mathf.Sin(a));
+            var cand = new Vector3(basePos.x, restY, basePos.z) + dir * k_DetachSideOffset;
+
+            // 這個位置底下真的有桌子嗎（而且高度就是桌面）
+            if (!Physics.Raycast(cand + Vector3.up * 0.4f, Vector3.down, out var hit, 1.0f)) continue;
+            if (hit.collider.transform.IsChildOf(handle.transform)) continue;
+            if (Mathf.Abs(hit.point.y - tableY) > 0.02f) continue;
+
+            // 離烤盤越遠越好，免得看起來像已經放上去了
+            float panDist = Vector3.Distance(new Vector3(cand.x, 0, cand.z),
+                                             new Vector3(panPos.x, 0, panPos.z));
+            if (panDist < 0.25f) continue;
+
+            if (panDist > bestScore)
+            {
+                bestScore = panDist;
+                chosen = cand;
+                why = $"角度 {i * 30}°，落在「{hit.collider.gameObject.name}」" +
+                      $"（Y={hit.point.y:F4}），離烤盤 {panDist:F3} m";
+            }
+        }
+
+        point.position = chosen;
+        sb.AppendLine($"  脫離點選點：{why}");
         point.rotation = Quaternion.identity;   // 不跟著印章翻，月餅要平放
         station.detachPoint = point;
 

@@ -814,6 +814,7 @@ MonoBehaviour:
   debugFlyTarget: {fileID: 70466171}
   debugFlyDuration: 1.2
   debugForceDeliver: 1
+  addDoughAnchor: 1
 --- !u!54 &58683361
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1666,6 +1667,7 @@ MonoBehaviour:
   debugFlyTarget: {fileID: 70466171}
   debugFlyDuration: 1.2
   debugForceDeliver: 1
+  addDoughAnchor: 1
 --- !u!54 &110460653
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6178,6 +6180,7 @@ MonoBehaviour:
   debugFlyTarget: {fileID: 1028469499}
   debugFlyDuration: 1.2
   debugForceDeliver: 1
+  addDoughAnchor: 1
   blendShapeName: small
   blendShapeIndexOverride: -1
   restValue: 0
@@ -13594,7 +13597,7 @@ Transform:
   m_GameObject: {fileID: 1392621032}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7037656, y: 0.06865934, z: 0.06865934, w: 0.7037655}
-  m_LocalPosition: {x: -5.907884e-10, y: 0.000000018852681, z: -0.079294294}
+  m_LocalPosition: {x: 0.04361621, y: 0.12771174, z: -0.079294264}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14147,6 +14150,7 @@ MonoBehaviour:
   debugFlyTarget: {fileID: 70466171}
   debugFlyDuration: 1.2
   debugForceDeliver: 1
+  addDoughAnchor: 1
 --- !u!54 &1431462196
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17028,6 +17032,7 @@ MonoBehaviour:
   debugFlyTarget: {fileID: 70466171}
   debugFlyDuration: 1.2
   debugForceDeliver: 1
+  addDoughAnchor: 1
 --- !u!54 &1742366193
 Rigidbody:
   m_ObjectHideFlags: 0
