@@ -311,6 +311,12 @@ public class MooncakeChineseFlow : MonoBehaviour
     [FoldoutGroup("Debug"), Button("⑧ 三顆都刷上蛋液", ButtonSizes.Medium), GUIColor(0.6f, 0.9f, 0.6f)]
     public void DebugStep8_EggWash()
     {
+        if (Mathf.Max(1, bakesBeforeDone) <= 1)
+        {
+            Debug.LogWarning("[月餅流程] 這條流程只烤一輪（印尼版），沒有刷蛋液這一步", this);
+            return;
+        }
+
         if (traySlots == null) return;
         foreach (var slot in traySlots)
         {
@@ -321,6 +327,12 @@ public class MooncakeChineseFlow : MonoBehaviour
     [FoldoutGroup("Debug"), Button("⑨ 再送進烤箱（第二輪）", ButtonSizes.Medium), GUIColor(0.6f, 0.9f, 0.6f)]
     public void DebugStep9_BakeAgain()
     {
+        if (Mathf.Max(1, bakesBeforeDone) <= 1)
+        {
+            Debug.LogWarning("[月餅流程] 這條流程只烤一輪（印尼版），沒有第二輪", this);
+            return;
+        }
+
         if (!AllEggWashed())
         {
             Debug.LogWarning("[月餅流程] 還沒三個都刷到蛋液", this);
@@ -391,13 +403,16 @@ public class MooncakeChineseFlow : MonoBehaviour
             yield return new WaitForSeconds(Mathf.Max(0.1f, debugStepDelay));
         }
 
-        // 三顆都好了 → 第一輪烘烤 → 刷蛋液 → 第二輪烘烤
+        // 三顆都好了 → 第一輪烘烤 →（只有兩輪的中式才有）刷蛋液 → 第二輪烘烤
         float d = Mathf.Max(0.1f, debugStepDelay);
 
         DebugStep7_Bake();
         yield return new WaitForSeconds(d);
         yield return new WaitUntil(() => ovenStation == null || ovenStation.BakeCount >= 1);
         yield return new WaitForSeconds(d);
+
+        // 印尼版只烤一輪，這裡就結束了；再往下跑會多刷一次蛋液又多烤一輪
+        if (Mathf.Max(1, bakesBeforeDone) <= 1) yield break;
 
         DebugStep8_EggWash();
         yield return new WaitForSeconds(d);

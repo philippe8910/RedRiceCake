@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
 
 /// <summary>
 /// 設定的資料層。每一項都用同一套介面描述（顯示名稱、目前值、上一個／下一個），
 /// UI 那邊就能用同一種「設定列」元件套用到所有項目，不必每項手刻。
 /// </summary>
 [DisallowMultipleComponent]
+// 要比任何會讀設定／讀語言的元件更早跑：Unity 是每個物件各自 Awake+OnEnable
+// 交錯執行，不保證所有 Awake 先跑完，否則多語文字會在語言套用前就先 Refresh。
+[DefaultExecutionOrder(-1000)]
 public class MooncakeSettings : MonoBehaviour
 {
     public static MooncakeSettings Instance { get; private set; }
@@ -81,6 +86,19 @@ public class MooncakeSettings : MonoBehaviour
         BuildOptions();
         Load();
         ApplyAll();
+    }
+
+    private void Start()
+    {
+        // 保險：Awake 時 I2 可能還沒初始化完，這裡重新套用一次語言（不只是廣播），
+        // 順便讓 Awake 期間還沒訂閱到事件的元件補上。
+        ApplyLanguage();
+
+        // XR Origin 的 ControllerInputActionManager 會在它自己的 Start 設定轉向，
+        // 本元件執行順序在它之前，所以這裡再套一次才不會被蓋掉。
+        ApplyComfort();
+
+        onChanged?.Invoke();
     }
 
     private void OnDestroy()
@@ -249,13 +267,27 @@ public class MooncakeSettings : MonoBehaviour
 
     private void ApplyComfort()
     {
+        // 直接開關 XRI 的轉向元件本身。先前只設 ControllerInputActionManager 的
+        // m_SmoothTurnEnabled 私有欄位，那只影響輸入綁定的切換時機，
+        // 轉向角度與模式其實不會生效。
+        foreach (var snap in FindObjectsOfType<SnapTurnProvider>(true))
+        {
+            snap.enabled = !smoothTurn;
+            snap.turnAmount = SnapAngles[Mathf.Clamp(snapAngleStep, 0, SnapAngles.Length - 1)];
+        }
+
+        foreach (var cont in FindObjectsOfType<ContinuousTurnProvider>(true))
+            cont.enabled = smoothTurn;
+
+        foreach (var move in FindObjectsOfType<ContinuousMoveProvider>(true))
+            move.moveSpeed = MoveSpeeds[Mathf.Clamp(moveSpeedStep, 0, MoveSpeeds.Length - 1)];
+
+        // 這個仍要設，Starter Assets 會依它決定要啟用哪一組轉向輸入動作
         foreach (var mb in FindObjectsOfType<MonoBehaviour>(true))
         {
             var t = mb.GetType();
             if (t.Name != "ControllerInputActionManager") continue;
-
             SetField(mb, t, "m_SmoothTurnEnabled", smoothTurn);
-            SetField(mb, t, "m_SmoothMotionEnabled", true);
         }
     }
 

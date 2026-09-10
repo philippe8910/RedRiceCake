@@ -30,8 +30,10 @@ public class MooncakeTMPFontFallback : MonoBehaviour
     public int atlasHeight = 1024;
 
     [Header("行為")]
-    [Tooltip("避免重複載入場景時重覆建立")]
-    public bool dontDestroyOnLoad = true;
+    [Tooltip("一般不需要開。fallback 是掛在 TMP_Settings 這個全域資產上，" +
+             "本來就跨場景有效；而且這個元件常跟別的元件共用同一個根物件，" +
+             "開了會把整個根物件（例如選單 UI）一起帶到下個場景。")]
+    public bool dontDestroyOnLoad;
 
     private static bool _applied;
     private static readonly List<TMP_FontAsset> _created = new List<TMP_FontAsset>();
@@ -70,10 +72,18 @@ public class MooncakeTMPFontFallback : MonoBehaviour
             return;
         }
 
-        int added = 0;
+        int added = 0, already = 0;
         foreach (var font in fallbackFonts)
         {
             if (font == null) continue;
+
+            // 已經有人（多半是 Tools → 建立 CJK 字型資產 做出來的資產）
+            // 把同一支 .ttf 掛進全域 fallback 了，就不用再現做一份
+            if (AlreadyCovered(list, font))
+            {
+                already++;
+                continue;
+            }
 
             var asset = TMP_FontAsset.CreateFontAsset(
                 font, samplingPointSize, atlasPadding,
@@ -97,7 +107,16 @@ public class MooncakeTMPFontFallback : MonoBehaviour
         }
 
         _applied = true;
-        Debug.Log($"[字型] 已加入 {added} 個 fallback 字型，目前 TMP 全域 fallback 共 {list.Count} 個", this);
+        Debug.Log($"[字型] 已加入 {added} 個 fallback 字型（{already} 個已經有資產、略過），" +
+                  $"目前 TMP 全域 fallback 共 {list.Count} 個", this);
+    }
+
+    private static bool AlreadyCovered(List<TMP_FontAsset> list, Font font)
+    {
+        foreach (var a in list)
+            if (a != null && a.sourceFontFile == font)
+                return true;
+        return false;
     }
 
     [Button("Debug：列出目前的 fallback", ButtonSizes.Medium), GUIColor(0.6f, 0.8f, 1f)]

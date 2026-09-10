@@ -20,7 +20,7 @@ public class MooncakeSettingRow : MonoBehaviour
     public Button prevButton;
     public Button nextButton;
 
-    [Header("拉桿式")]
+    [Header("拉桿式（連續型設定用）")]
     public GameObject sliderGroup;
     public Slider slider;
 
@@ -33,9 +33,17 @@ public class MooncakeSettingRow : MonoBehaviour
         Refresh();
     }
 
+    private void Start()
+    {
+        // 同上：確保顯示的是設定元件載入後的值
+        Bind();
+        Refresh();
+    }
+
     private void OnDestroy()
     {
         if (_settings != null) _settings.onChanged.RemoveListener(Refresh);
+        if (slider != null) slider.onValueChanged.RemoveListener(OnSlider);
     }
 
     private void Bind()

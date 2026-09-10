@@ -53,12 +53,13 @@ public class MooncakeScreenFader : MonoBehaviour
 
     private void Awake()
     {
-        // 換場景時保留，這樣淡出可以跨場景延續
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        // 每個場景各自擁有一個 Fader，不做跨場景保留：
+        // 換場景的銜接靠「舊場景淡到全黑 → 新場景 Awake 立刻設成全黑 → 再淡入」，
+        // 不需要同一個實例活過場景切換。
+        //
+        // 這裡刻意不 Destroy 重複的實例：先前那樣寫時，只要有別的元件對
+        // 共用根物件呼叫了 DontDestroyOnLoad，殘留的舊 Fader 就會讓新場景的
+        // Fader 自我銷毀，導致新場景完全沒有淡入。
         Instance = this;
 
         BuildQuad();

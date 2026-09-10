@@ -31,6 +31,12 @@ public class MooncakeLocalizedText : MonoBehaviour
         Refresh();
     }
 
+    private void Start()
+    {
+        // 保險：OnEnable 可能早於設定元件的 Awake，Start 一定在所有 Awake 之後
+        Refresh();
+    }
+
     private void OnDisable()
     {
         if (_settings != null) _settings.onLanguageChanged.RemoveListener(OnLanguageChanged);
